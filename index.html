@@ -1,0 +1,961 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Questionário de Tipo de Pele Baumann</title>
+  <style>
+    body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; margin:0; padding:20px; background:#f7fafc; color:#111827; }
+    .container{max-width:900px;margin:0 auto;background:#fff;padding:20px;border-radius:8px;box-shadow:0 6px 18px rgba(0,0,0,.06);}
+    h1{margin:0 0 10px;font-size:20px}
+    h2{font-size:16px;margin:12px 0;}
+    p.small{font-size:13px;color:#6b7280}
+    fieldset{border:1px solid #e6e9ee;padding:12px;border-radius:6px;margin:12px 0}
+    legend{font-weight:600}
+    .options{display:flex;flex-direction:column;gap:8px;margin-top:8px}
+    label.opt{display:flex;align-items:center;gap:8px}
+    .btns{display:flex;gap:8px;margin-top:12px}
+    button{padding:8px 12px;border-radius:6px;border:1px solid #d1d5db;background:#111827;color:#fff;cursor:pointer}
+    button.secondary{background:#fff;color:#111827;border:1px solid #d1d5db}
+    .right{margin-left:auto}
+    .result{background:#f1f5f9;padding:12px;border-radius:6px;margin-top:12px}
+    .score-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px dashed #e6e9ee}
+    .muted{color:#6b7280;font-size:13px}
+    .notice{background:#fffbeb;color:#92400e;padding:8px;border-radius:6px;margin-top:10px}
+    .small-note{font-size:13px;color:#374151}
+    .footer{margin-top:18px;font-size:13px;color:#6b7280}
+    a.link{color:#0ea5a4}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Questionário de Tipo de Pele — Baumann</h1>
+    <p class="small">Responda sinceramente. Após preencher tudo, clique em <strong>Calcular resultado</strong>.</p>
+
+    <form id="quizForm">
+
+      <!-- PARTE 1 -->
+      <section data-part="0">
+        <h2>PARTE UM — OLEOSA VS. SECA</h2>
+        <p class="small">Esta seção mede a produção de óleo e hidratação da pele.</p>
+
+        <fieldset>
+          <legend>1. Após lavar o rosto, não aplique produtos. 2-3 horas depois, sob luz forte, sua testa e bochechas estão:</legend>
+          <div class="options">
+            <label class="opt"><input type="radio" name="p0q0" value="1"> Muito ásperas, descamando ou acinzentadas</label>
+            <label class="opt"><input type="radio" name="p0q0" value="2"> Repuxadas</label>
+            <label class="opt"><input type="radio" name="p0q0" value="3"> Bem hidratadas sem reflexo de luz</label>
+            <label class="opt"><input type="radio" name="p0q0" value="4"> Brilhantes com reflexo de luz forte</label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>2. Em fotos, seu rosto aparece brilhante:</legend>
+          <div class="options">
+            <label class="opt"><input type="radio" name="p0q1" value="1"> Nunca, ou você nunca notou brilho</label>
+            <label class="opt"><input type="radio" name="p0q1" value="2"> Às vezes</label>
+            <label class="opt"><input type="radio" name="p0q1" value="3"> Frequentemente</label>
+            <label class="opt"><input type="radio" name="p0q1" value="4"> Sempre</label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>3. 2-3 horas após aplicar base (sem pó), sua maquiagem fica:</legend>
+          <div class="options">
+            <label class="opt"><input type="radio" name="p0q2" value="1"> Descamando ou acumulada nas rugas</label>
+            <label class="opt"><input type="radio" name="p0q2" value="2"> Lisa</label>
+            <label class="opt"><input type="radio" name="p0q2" value="3"> Brilhante</label>
+            <label class="opt"><input type="radio" name="p0q2" value="4"> Borrada e brilhante</label>
+            <label class="opt"><input type="radio" name="p0q2" value="2.5"> Não uso base facial</label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>4. Em ambiente com baixa umidade, sem hidratante ou protetor, sua pele facial:</legend>
+          <div class="options">
+            <label class="opt"><input type="radio" name="p0q3" value="1"> Fica muito seca ou racha</label>
+            <label class="opt"><input type="radio" name="p0q3" value="2"> Fica repuxada</label>
+            <label class="opt"><input type="radio" name="p0q3" value="3"> Fica normal</label>
+            <label class="opt"><input type="radio" name="p0q3" value="4"> Fica brilhante, ou nunca sinto que preciso de hidratante</label>
+            <label class="opt"><input type="radio" name="p0q3" value="2.5"> Não sei</label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>5. Olhe no espelho de aumento. Quantos poros grandes (tamanho da ponta de um alfinete ou maior) você tem?</legend>
+          <div class="options">
+            <label class="opt"><input type="radio" name="p0q4" value="1"> Nenhum</label>
+            <label class="opt"><input type="radio" name="p0q4" value="2"> Alguns apenas na zona T (testa e nariz)</label>
+            <label class="opt"><input type="radio" name="p0q4" value="3"> Muitos</label>
+            <label class="opt"><input type="radio" name="p0q4" value="4"> Muitas</label>
+            <label class="opt"><input type="radio" name="p0q4" value="2.5"> Não sei (só responda se realmente não conseguir determinar)</label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>6. Você caracterizaria sua pele facial como:</legend>
+          <div class="options">
+            <label class="opt"><input type="radio" name="p0q5" value="1"> Seca</label>
+            <label class="opt"><input type="radio" name="p0q5" value="2"> Normal</label>
+            <label class="opt"><input type="radio" name="p0q5" value="3"> Mista</label>
+            <label class="opt"><input type="radio" name="p0q5" value="4"> Oleosa</label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>7. Quando usa sabonete que faz bastante espuma, sua pele facial:</legend>
+          <div class="options">
+            <label class="opt"><input type="radio" name="p0q6" value="1"> Fica seca ou racha</label>
+            <label class="opt"><input type="radio" name="p0q6" value="2"> Fica levemente seca mas não racha</label>
+            <label class="opt"><input type="radio" name="p0q6" value="3"> Fica normal</label>
+            <label class="opt"><input type="radio" name="p0q6" value="4"> Fica oleosa</label>
+            <label class="opt"><input type="radio" name="p0q6" value="2.5"> Não uso sabonete com espuma (se é porque eles deixam sua pele seca, escolha a primeira)</label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>8. Se não hidratada, sua pele facial fica repuxada:</legend>
+          <div class="options">
+            <label class="opt"><input type="radio" name="p0q7" value="1"> Sempre</label>
+            <label class="opt"><input type="radio" name="p0q7" value="2"> Às vezes</label>
+            <label class="opt"><input type="radio" name="p0q7" value="3"> Raramente</label>
+            <label class="opt"><input type="radio" name="p0q7" value="4"> Nunca</label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>9. Você tem poros entupidos (cravos pretos ou brancos):</legend>
+          <div class="options">
+            <label class="opt"><input type="radio" name="p0q8" value="1"> Nunca</label>
+            <label class="opt"><input type="radio" name="p0q8" value="2"> Raramente</label>
+            <label class="opt"><input type="radio" name="p0q8" value="3"> Às vezes</label>
+            <label class="opt"><input type="radio" name="p0q8" value="4"> Sempre</label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>10. Seu rosto fica oleoso na zona T (testa e nariz):</legend>
+          <div class="options">
+            <label class="opt"><input type="radio" name="p0q9" value="1"> Nunca</label>
+            <label class="opt"><input type="radio" name="p0q9" value="2"> Às vezes</label>
+            <label class="opt"><input type="radio" name="p0q9" value="3"> Frequentemente</label>
+            <label class="opt"><input type="radio" name="p0q9" value="4"> Sempre</label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>11. 2-3 horas após aplicar hidratante, suas bochechas estão:</legend>
+          <div class="options">
+            <label class="opt"><input type="radio" name="p0q10" value="1"> Muito ásperas, descamando ou acinzentadas</label>
+            <label class="opt"><input type="radio" name="p0q10" value="2"> Lisas</label>
+            <label class="opt"><input type="radio" name="p0q10" value="3"> Levemente brilhantes</label>
+            <label class="opt"><input type="radio" name="p0q10" value="4"> Brilhantes e escorregadias, ou não uso hidratante</label>
+          </div>
+        </fieldset>
+      </section>
+
+      <!-- PARTE 2 -->
+      <section data-part="1">
+        <h2>PARTE DOIS — SENSÍVEL VS. RESISTENTE</h2>
+        <p class="small">Esta seção mede tendência a espinhas, vermelhidão, rubor e coceira.</p>
+
+        <fieldset>
+          <legend>1. Você tem espinhas vermelhas no rosto:</legend>
+          <div class="options">
+            <label class="opt"><input type="radio" name="p1q0" value="1"> Nunca</label>
+            <label class="opt"><input type="radio" name="p1q0" value="2"> Raramente</label>
+            <label class="opt"><input type="radio" name="p1q0" value="3"> Pelo menos uma vez por mês</label>
+            <label class="opt"><input type="radio" name="p1q0" value="4"> Pelo menos uma vez por semana</label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>2. Produtos de cuidados com a pele (limpadores, hidratantes, tônicos, maquiagem) provocam espinhas, erupção cutânea, coceira ou ardência:</legend>
+          <div class="options">
+            <label class="opt"><input type="radio" name="p1q1" value="1"> Nunca</label>
+            <label class="opt"><input type="radio" name="p1q1" value="2"> Raramente</label>
+            <label class="opt"><input type="radio" name="p1q1" value="3"> Frequentemente</label>
+            <label class="opt"><input type="radio" name="p1q1" value="4"> Sempre</label>
+            <label class="opt"><input type="radio" name="p1q1" value="2.5"> Não uso produtos no rosto</label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>3. Você já foi diagnosticado(a) com acne ou rosácea?</legend>
+          <div class="options">
+            <label class="opt"><input type="radio" name="p1q2" value="1"> Não</label>
+            <label class="opt"><input type="radio" name="p1q2" value="2"> Amigos e conhecidos me dizem que tenho</label>
+            <label class="opt"><input type="radio" name="p1q2" value="3"> Sim</label>
+            <label class="opt"><input type="radio" name="p1q2" value="4"> Sim, um caso grave</label>
+            <label class="opt"><input type="radio" name="p1q2" value="2.5"> Não tenho certeza</label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>4. Se você usa joias que não são ouro 14 quilates, com que frequência tem erupção cutânea?</legend>
+          <div class="options">
+            <label class="opt"><input type="radio" name="p1q3" value="1"> Nunca</label>
+            <label class="opt"><input type="radio" name="p1q3" value="2"> Raramente</label>
+            <label class="opt"><input type="radio" name="p1q3" value="3"> Frequentemente</label>
+            <label class="opt"><input type="radio" name="p1q3" value="4"> Sempre</label>
+            <label class="opt"><input type="radio" name="p1q3" value="2.5"> Não tenho certeza</label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>5. Protetores solares fazem sua pele coçar, arder, ter espinhas ou ficar vermelha:</legend>
+          <div class="options">
+            <label class="opt"><input type="radio" name="p1q4" value="1"> Nunca</label>
+            <label class="opt"><input type="radio" name="p1q4" value="2"> Raramente</label>
+            <label class="opt"><input type="radio" name="p1q4" value="3"> Frequentemente</label>
+            <label class="opt"><input type="radio" name="p1q4" value="4"> Sempre</label>
+            <label class="opt"><input type="radio" name="p1q4" value="2.5"> Nunca uso protetor solar</label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>6. Você já foi diagnosticado(a) com dermatite atópica, eczema ou dermatite de contato?</legend>
+          <div class="options">
+            <label class="opt"><input type="radio" name="p1q5" value="1"> Não</label>
+            <label class="opt"><input type="radio" name="p1q5" value="2"> Amigos me dizem que tenho</label>
+            <label class="opt"><input type="radio" name="p1q5" value="3"> Sim</label>
+            <label class="opt"><input type="radio" name="p1q5" value="4"> Sim, um caso grave</label>
+            <label class="opt"><input type="radio" name="p1q5" value="2.5"> Não tenho certeza</label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>7. Com que frequência você tem erupção cutânea embaixo dos seus anéis?</legend>
+          <div class="options">
+            <label class="opt"><input type="radio" name="p1q6" value="1"> Nunca</label>
+            <label class="opt"><input type="radio" name="p1q6" value="2"> Raramente</label>
+            <label class="opt"><input type="radio" name="p1q6" value="3"> Frequentemente</label>
+            <label class="opt"><input type="radio" name="p1q6" value="4"> Sempre</label>
+            <label class="opt"><input type="radio" name="p1q6" value="2.5"> Não uso anéis</label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>8. Banho de espuma perfumado, óleo de massagem ou loções corporais provocam espinhas, coceira ou ressecamento:</legend>
+          <div class="options">
+            <label class="opt"><input type="radio" name="p1q7" value="1"> Nunca</label>
+            <label class="opt"><input type="radio" name="p1q7" value="2"> Raramente</label>
+            <label class="opt"><input type="radio" name="p1q7" value="3"> Frequentemente</label>
+            <label class="opt"><input type="radio" name="p1q7" value="4"> Sempre</label>
+            <label class="opt"><input type="radio" name="p1q7" value="2.5"> Nunca uso esses produtos (responda 'Sempre' se não usa porque causam problemas)</label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>9. Você consegue usar o sabonete de hotéis no corpo ou rosto sem problema?</legend>
+          <div class="options">
+            <label class="opt"><input type="radio" name="p1q8" value="1"> Sim</label>
+            <label class="opt"><input type="radio" name="p1q8" value="2"> Na maioria das vezes, não tenho problema</label>
+            <label class="opt"><input type="radio" name="p1q8" value="3"> Não, minha pele coça, fica vermelha ou tem espinhas</label>
+            <label class="opt"><input type="radio" name="p1q8" value="4"> Não usaria. Tive muitos problemas no passado</label>
+            <label class="opt"><input type="radio" name="p1q8" value="2.5"> Levo o meu próprio, então não tenho certeza</label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>10. Alguém na sua família foi diagnosticado com dermatite atópica, eczema, asma e/ou alergias?</legend>
+          <div class="options">
+            <label class="opt"><input type="radio" name="p1q9" value="1"> Não</label>
+            <label class="opt"><input type="radio" name="p1q9" value="2"> Um membro da família que eu saiba</label>
+            <label class="opt"><input type="radio" name="p1q9" value="3"> Vários membros da família</label>
+            <label class="opt"><input type="radio" name="p1q9" value="4"> Muitos dos meus familiares</label>
+            <label class="opt"><input type="radio" name="p1q9" value="2.5"> Não tenho certeza</label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>11. O que acontece se você usa detergentes perfumados ou folhas antiestáticas na secadora?</legend>
+          <div class="options">
+            <label class="opt"><input type="radio" name="p1q10" value="1"> Minha pele fica bem</label>
+            <label class="opt"><input type="radio" name="p1q10" value="2"> Minha pele fica levemente seca</label>
+            <label class="opt"><input type="radio" name="p1q10" value="3"> Minha pele coça</label>
+            <label class="opt"><input type="radio" name="p1q10" value="4"> Minha pele coça e fica com erupção</label>
+            <label class="opt"><input type="radio" name="p1q10" value="2.5"> Não tenho certeza, ou nunca usei</label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>12. Com que frequência seu rosto/pescoço ficam vermelhos após exercício moderado, estresse ou emoção forte?</legend>
+          <div class="options">
+            <label class="opt"><input type="radio" name="p1q11" value="1"> Nunca</label>
+            <label class="opt"><input type="radio" name="p1q11" value="2"> Às vezes</label>
+            <label class="opt"><input type="radio" name="p1q11" value="3"> Frequentemente</label>
+            <label class="opt"><input type="radio" name="p1q11" value="4"> Sempre</label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>13. Com que frequência você fica vermelho(a) e corado(a) depois de beber álcool?</legend>
+          <div class="options">
+            <label class="opt"><input type="radio" name="p1q12" value="1"> Nunca</label>
+            <label class="opt"><input type="radio" name="p1q12" value="2"> Às vezes</label>
+            <label class="opt"><input type="radio" name="p1q12" value="3"> Frequentemente</label>
+            <label class="opt"><input type="radio" name="p1q12" value="4"> Sempre, ou não bebo por causa deste problema</label>
+            <label class="opt"><input type="radio" name="p1q12" value="2.5"> Nunca bebo álcool</label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>14. Com que frequência você fica vermelho(a) após comer alimentos ou bebidas apimentados ou quentes?</legend>
+          <div class="options">
+            <label class="opt"><input type="radio" name="p1q13" value="1"> Nunca</label>
+            <label class="opt"><input type="radio" name="p1q13" value="2"> Às vezes</label>
+            <label class="opt"><input type="radio" name="p1q13" value="3"> Frequentemente</label>
+            <label class="opt"><input type="radio" name="p1q13" value="4"> Sempre</label>
+            <label class="opt"><input type="radio" name="p1q13" value="2.5"> Nunca como comida apimentada (se não come por causa do rubor, escolha 'Sempre')</label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>15. Quantos vasos sanguíneos quebrados visíveis (vermelhos ou azuis) você tem no rosto e nariz?</legend>
+          <div class="options">
+            <label class="opt"><input type="radio" name="p1q14" value="1"> Nenhum</label>
+            <label class="opt"><input type="radio" name="p1q14" value="2"> Poucos (um a três em todo o rosto)</label>
+            <label class="opt"><input type="radio" name="p1q14" value="3"> Alguns (quatro a seis em todo o rosto)</label>
+            <label class="opt"><input type="radio" name="p1q14" value="4"> Muitos (mais de sete em todo o rosto)</label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>16. Seu rosto aparece vermelho em fotografias:</legend>
+          <div class="options">
+            <label class="opt"><input type="radio" name="p1q15" value="1"> Nunca, ou nunca notei</label>
+            <label class="opt"><input type="radio" name="p1q15" value="2"> Às vezes</label>
+            <label class="opt"><input type="radio" name="p1q15" value="3"> Frequentemente</label>
+            <label class="opt"><input type="radio" name="p1q15" value="4"> Sempre</label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>17. As pessoas perguntam se você está queimado(a) de sol, mesmo quando não está:</legend>
+          <div class="options">
+            <label class="opt"><input type="radio" name="p1q16" value="1"> Nunca</label>
+            <label class="opt"><input type="radio" name="p1q16" value="2"> Às vezes</label>
+            <label class="opt"><input type="radio" name="p1q16" value="3"> Frequentemente</label>
+            <label class="opt"><input type="radio" name="p1q16" value="4"> Sempre</label>
+            <label class="opt"><input type="radio" name="p1q16" value="2.5"> Sempre estou queimado(a) de sol</label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>18. Você tem vermelhidão, coceira ou inchaço causados por maquiagem, protetor solar ou produtos de skincare?</legend>
+          <div class="options">
+            <label class="opt"><input type="radio" name="p1q17" value="1"> Nunca</label>
+            <label class="opt"><input type="radio" name="p1q17" value="2"> Às vezes</label>
+            <label class="opt"><input type="radio" name="p1q17" value="3"> Frequentemente</label>
+            <label class="opt"><input type="radio" name="p1q17" value="4"> Sempre</label>
+            <label class="opt"><input type="radio" name="p1q17" value="2.5"> Não uso esses produtos (responda 'Sempre' se não usa por causa desses sintomas)</label>
+          </div>
+        </fieldset>
+      </section>
+
+      <!-- PARTE 3 -->
+      <section data-part="2">
+        <h2>PARTE TRÊS — PIGMENTADA VS. NÃO PIGMENTADA</h2>
+        <p class="small">Esta seção mede tendência à formação de manchas e sardas.</p>
+
+        <fieldset>
+          <legend>1. Depois de ter uma espinha ou pelo encravado, aparece uma mancha marrom/preta escura:</legend>
+          <div class="options">
+            <label class="opt"><input type="radio" name="p2q0" value="1"> Nunca ou não notei</label>
+            <label class="opt"><input type="radio" name="p2q0" value="2"> Às vezes</label>
+            <label class="opt"><input type="radio" name="p2q0" value="3"> Frequentemente</label>
+            <label class="opt"><input type="radio" name="p2q0" value="4"> Sempre</label>
+            <label class="opt"><input type="radio" name="p2q0" value="2.5"> Nunca tenho espinhas ou pelos encravados</label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>2. Depois de se cortar, por quanto tempo a marca marrom (não rosa) permanece?</legend>
+          <div class="options">
+            <label class="opt"><input type="radio" name="p2q1" value="1"> Não fico com marca marrom ou não notei</label>
+            <label class="opt"><input type="radio" name="p2q1" value="2"> Uma semana</label>
+            <label class="opt"><input type="radio" name="p2q1" value="3"> Algumas semanas</label>
+            <label class="opt"><input type="radio" name="p2q1" value="4"> Meses</label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>3. Quantas manchas escuras você desenvolveu no rosto durante gravidez, uso de pílula anticoncepcional ou terapia hormonal?</legend>
+          <div class="options">
+            <label class="opt"><input type="radio" name="p2q2" value="1"> Nenhuma</label>
+            <label class="opt"><input type="radio" name="p2q2" value="2"> Uma</label>
+            <label class="opt"><input type="radio" name="p2q2" value="3"> Algumas</label>
+            <label class="opt"><input type="radio" name="p2q2" value="4"> Muitas</label>
+            <label class="opt"><input type="radio" name="p2q2" value="2.5"> Não se aplica a mim</label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>4. Você tem manchas escuras no lábio superior ou bochechas? Ou já teve e removeu?</legend>
+          <div class="options">
+            <label class="opt"><input type="radio" name="p2q3" value="1"> Não</label>
+            <label class="opt"><input type="radio" name="p2q3" value="2"> Não tenho certeza</label>
+            <label class="opt"><input type="radio" name="p2q3" value="3"> Sim, levemente perceptíveis</label>
+            <label class="opt"><input type="radio" name="p2q3" value="4"> Sim, muito perceptíveis</label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>5. As manchas escuras no seu rosto pioram quando você vai ao sol?</legend>
+          <div class="options">
+            <label class="opt"><input type="radio" name="p2q4" value="1"> Não tenho manchas escuras</label>
+            <label class="opt"><input type="radio" name="p2q4" value="2"> Não tenho certeza</label>
+            <label class="opt"><input type="radio" name="p2q4" value="3"> Pioram levemente</label>
+            <label class="opt"><input type="radio" name="p2q4" value="4"> Pioram muito</label>
+            <label class="opt"><input type="radio" name="p2q4" value="2.5"> Uso protetor todos os dias e nunca tomo sol</label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>6. Você foi diagnosticado(a) com melasma (manchas marrons ou cinza no rosto)?</legend>
+          <div class="options">
+            <label class="opt"><input type="radio" name="p2q5" value="1"> Não</label>
+            <label class="opt"><input type="radio" name="p2q5" value="2"> Sim, mas passou</label>
+            <label class="opt"><input type="radio" name="p2q5" value="3"> Sim, e tenho agora</label>
+            <label class="opt"><input type="radio" name="p2q5" value="4"> Sim, tenho um caso grave agora</label>
+            <label class="opt"><input type="radio" name="p2q5" value="2.5"> Não tenho certeza</label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>7. Você tem ou já teve pequenas manchas marrons (sardas ou manchas solares) no rosto, peito, costas ou braços?</legend>
+          <div class="options">
+            <label class="opt"><input type="radio" name="p2q6" value="1"> Não</label>
+            <label class="opt"><input type="radio" name="p2q6" value="2"> Sim, algumas (uma a cinco)</label>
+            <label class="opt"><input type="radio" name="p2q6" value="3"> Sim, muitas (seis a quinze)</label>
+            <label class="opt"><input type="radio" name="p2q6" value="4"> Sim, muitas (dezesseis ou mais)</label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>8. Quando exposto ao sol pela primeira vez em vários meses, sua pele:</legend>
+          <div class="options">
+            <label class="opt"><input type="radio" name="p2q7" value="1"> Apenas queima</label>
+            <label class="opt"><input type="radio" name="p2q7" value="2"> Queima, depois escurece</label>
+            <label class="opt"><input type="radio" name="p2q7" value="3"> Escurece</label>
+            <label class="opt"><input type="radio" name="p2q7" value="4"> Já é escura, difícil ver se escurece</label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>9. Após muitos dias de exposição solar consecutiva:</legend>
+          <div class="options">
+            <label class="opt"><input type="radio" name="p2q8" value="1"> Queimo e fico com bolhas, mas minha pele não muda de cor</label>
+            <label class="opt"><input type="radio" name="p2q8" value="2"> Minha pele fica levemente mais escura</label>
+            <label class="opt"><input type="radio" name="p2q8" value="3"> Minha pele fica muito mais escura</label>
+            <label class="opt"><input type="radio" name="p2q8" value="4"> Já é escura, difícil ver se escurece</label>
+            <label class="opt"><input type="radio" name="p2q8" value="2.5"> Não tenho certeza</label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>10. Qual é a cor natural do seu cabelo? (Se grisalho, informe a cor antes de ficar grisalho)</legend>
+          <div class="options">
+            <label class="opt"><input type="radio" name="p2q9" value="1"> Loiro</label>
+            <label class="opt"><input type="radio" name="p2q9" value="2"> Castanho</label>
+            <label class="opt"><input type="radio" name="p2q9" value="3"> Preto</label>
+            <label class="opt"><input type="radio" name="p2q9" value="4"> Ruivo</label>
+          </div>
+        </fieldset>
+
+      </section>
+
+      <!-- PARTE 4 -->
+      <section data-part="3">
+        <h2>PARTE QUATRO — ENRUGADA VS. FIRME</h2>
+        <p class="small">Esta seção mede sua tendência a ter rugas.</p>
+
+        <fieldset>
+          <legend>1. Você tem rugas faciais?</legend>
+          <div class="options">
+            <label class="opt"><input type="radio" name="p3q0" value="1"> Não, nem mesmo ao sorrir, franzir ou levantar sobrancelhas</label>
+            <label class="opt"><input type="radio" name="p3q0" value="2"> Apenas quando me movimento (sorrir, franzir, levantar sobrancelhas)</label>
+            <label class="opt"><input type="radio" name="p3q0" value="3"> Sim, com movimento e algumas em repouso</label>
+            <label class="opt"><input type="radio" name="p3q0" value="4"> Rugas presentes mesmo sem movimento</label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>2. Qual a aparência da idade da pele facial da sua mãe?</legend>
+          <div class="options">
+            <label class="opt"><input type="radio" name="p3q1" value="1"> 5-10 anos mais jovem que sua idade</label>
+            <label class="opt"><input type="radio" name="p3q1" value="2"> Sua idade</label>
+            <label class="opt"><input type="radio" name="p3q1" value="3"> 5 anos mais velha que sua idade</label>
+            <label class="opt"><input type="radio" name="p3q1" value="4"> Mais de 5 anos mais velha</label>
+            <label class="opt"><input type="radio" name="p3q1" value="2.5"> Não se aplica (adotado/não consigo lembrar)</label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>3. Qual a aparência da idade da pele facial do seu pai?</legend>
+          <div class="options">
+            <label class="opt"><input type="radio" name="p3q2" value="1"> 5-10 anos mais jovem que sua idade</label>
+            <label class="opt"><input type="radio" name="p3q2" value="2"> Sua idade</label>
+            <label class="opt"><input type="radio" name="p3q2" value="3"> 5 anos mais velha que sua idade</label>
+            <label class="opt"><input type="radio" name="p3q2" value="4"> Mais de 5 anos mais velha</label>
+            <label class="opt"><input type="radio" name="p3q2" value="2.5"> Não se aplica (adotado/não consigo lembrar)</label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>4. Qual a aparência da idade da pele facial da sua avó materna?</legend>
+          <div class="options">
+            <label class="opt"><input type="radio" name="p3q3" value="1"> 5-10 anos mais jovem que sua idade</label>
+            <label class="opt"><input type="radio" name="p3q3" value="2"> Sua idade</label>
+            <label class="opt"><input type="radio" name="p3q3" value="3"> 5 anos mais velha que sua idade</label>
+            <label class="opt"><input type="radio" name="p3q3" value="4"> Mais de 5 anos mais velha</label>
+            <label class="opt"><input type="radio" name="p3q3" value="2.5"> Não se aplica (adotado/nunca conheci/não lembro)</label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>5. Qual a aparência da idade da pele facial do seu avô materno?</legend>
+          <div class="options">
+            <label class="opt"><input type="radio" name="p3q4" value="1"> 5-10 anos mais jovem que sua idade</label>
+            <label class="opt"><input type="radio" name="p3q4" value="2"> Sua idade</label>
+            <label class="opt"><input type="radio" name="p3q4" value="3"> 5 anos mais velha que sua idade</label>
+            <label class="opt"><input type="radio" name="p3q4" value="4"> Mais de 5 anos mais velha</label>
+            <label class="opt"><input type="radio" name="p3q4" value="2.5"> Não se aplica (adotado/nunca conheci/não lembro)</label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>6. Qual a aparência da idade da pele facial da sua avó paterna?</legend>
+          <div class="options">
+            <label class="opt"><input type="radio" name="p3q5" value="1"> 5-10 anos mais jovem que sua idade</label>
+            <label class="opt"><input type="radio" name="p3q5" value="2"> Sua idade</label>
+            <label class="opt"><input type="radio" name="p3q5" value="3"> 5 anos mais velha que sua idade</label>
+            <label class="opt"><input type="radio" name="p3q5" value="4"> Mais de 5 anos mais velha</label>
+            <label class="opt"><input type="radio" name="p3q5" value="2.5"> Não se aplica (adotado/nunca conheci/não lembro)</label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>7. Qual a aparência da idade da pele facial do seu avô paterno?</legend>
+          <div class="options">
+            <label class="opt"><input type="radio" name="p3q6" value="1"> 5-10 anos mais jovem que sua idade</label>
+            <label class="opt"><input type="radio" name="p3q6" value="2"> Sua idade</label>
+            <label class="opt"><input type="radio" name="p3q6" value="3"> 5 anos mais velha que sua idade</label>
+            <label class="opt"><input type="radio" name="p3q6" value="4"> Mais de 5 anos mais velha</label>
+            <label class="opt"><input type="radio" name="p3q6" value="2.5"> Não se aplica (adotado/nunca conheci/não lembro)</label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>8. Você já bronzeou a pele continuamente por mais de 2 semanas/ano? Por quantos anos total?</legend>
+          <div class="options">
+            <label class="opt"><input type="radio" name="p3q7" value="1"> Nunca</label>
+            <label class="opt"><input type="radio" name="p3q7" value="2"> 1-5 anos</label>
+            <label class="opt"><input type="radio" name="p3q7" value="3"> 5-10 anos</label>
+            <label class="opt"><input type="radio" name="p3q7" value="4"> Mais de 10 anos</label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>9. Bronzeamento sazonal de 2 semanas/ano ou menos? (férias de verão contam!)</legend>
+          <div class="options">
+            <label class="opt"><input type="radio" name="p3q8" value="1"> Nunca</label>
+            <label class="opt"><input type="radio" name="p3q8" value="2"> 1-5 anos</label>
+            <label class="opt"><input type="radio" name="p3q8" value="3"> 5-10 anos</label>
+            <label class="opt"><input type="radio" name="p3q8" value="4"> Mais de 10 anos</label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>10. Baseado nos lugares onde morou, quanta exposição solar diária você recebeu na vida?</legend>
+          <div class="options">
+            <label class="opt"><input type="radio" name="p3q9" value="1"> Pouca; morei em lugares cinzentos e nublados</label>
+            <label class="opt"><input type="radio" name="p3q9" value="2"> Alguma; climas variados</label>
+            <label class="opt"><input type="radio" name="p3q9" value="3"> Moderada; lugares com bastante sol</label>
+            <label class="opt"><input type="radio" name="p3q9" value="4"> Muita; locais tropicais ou muito ensolarados</label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>11. Quantos anos você acha que parece ter?</legend>
+          <div class="options">
+            <label class="opt"><input type="radio" name="p3q10" value="1"> 1-5 anos mais jovem que minha idade</label>
+            <label class="opt"><input type="radio" name="p3q10" value="2"> Minha idade</label>
+            <label class="opt"><input type="radio" name="p3q10" value="3"> 5 anos mais velha que minha idade</label>
+            <label class="opt"><input type="radio" name="p3q10" value="4"> Mais de 5 anos mais velha</label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>12. Nos últimos 5 anos, com que frequência permitiu que sua pele bronzeasse em atividades ao ar livre?</legend>
+          <div class="options">
+            <label class="opt"><input type="radio" name="p3q11" value="1"> Nunca</label>
+            <label class="opt"><input type="radio" name="p3q11" value="2"> Uma vez por mês</label>
+            <label class="opt"><input type="radio" name="p3q11" value="3"> Uma vez por semana</label>
+            <label class="opt"><input type="radio" name="p3q11" value="4"> Diariamente</label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>13. Com que frequência você foi a uma cabine de bronzeamento?</legend>
+          <div class="options">
+            <label class="opt"><input type="radio" name="p3q12" value="1"> Nunca</label>
+            <label class="opt"><input type="radio" name="p3q12" value="2"> 1-5 vezes</label>
+            <label class="opt"><input type="radio" name="p3q12" value="3"> 5-10 vezes</label>
+            <label class="opt"><input type="radio" name="p3q12" value="4"> Muitas vezes</label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>14. Ao longo da vida, quantos cigarros você fumou ou foi exposto?</legend>
+          <div class="options">
+            <label class="opt"><input type="radio" name="p3q13" value="1"> Nenhum</label>
+            <label class="opt"><input type="radio" name="p3q13" value="2"> Alguns maços</label>
+            <label class="opt"><input type="radio" name="p3q13" value="3"> Vários a muitos maços</label>
+            <label class="opt"><input type="radio" name="p3q13" value="4"> Fumo todos os dias</label>
+            <label class="opt"><input type="radio" name="p3q13" value="2.5"> Nunca fumei mas convivi com fumantes regularmente</label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>15. Descreva a poluição do ar onde você reside:</legend>
+          <div class="options">
+            <label class="opt"><input type="radio" name="p3q14" value="1"> Ar fresco e limpo</label>
+            <label class="opt"><input type="radio" name="p3q14" value="2"> Parte do ano tenho ar limpo</label>
+            <label class="opt"><input type="radio" name="p3q14" value="3"> Ar levemente poluído</label>
+            <label class="opt"><input type="radio" name="p3q14" value="4"> Ar muito poluído</label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>16. Por quanto tempo você usou cremes faciais com retinoides (retinol, Renova, Retin-A, Tazorac, Differin ou Avage)?</legend>
+          <div class="options">
+            <label class="opt"><input type="radio" name="p3q15" value="1"> Muitos anos</label>
+            <label class="opt"><input type="radio" name="p3q15" value="2"> Ocasionalmente</label>
+            <label class="opt"><input type="radio" name="p3q15" value="3"> Uma vez para acne quando era mais jovem</label>
+            <label class="opt"><input type="radio" name="p3q15" value="4"> Nunca</label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>17. Com que frequência você come frutas e vegetais atualmente?</legend>
+          <div class="options">
+            <label class="opt"><input type="radio" name="p3q16" value="1"> Em todas as refeições</label>
+            <label class="opt"><input type="radio" name="p3q16" value="2"> Uma vez por dia</label>
+            <label class="opt"><input type="radio" name="p3q16" value="3"> Ocasionalmente</label>
+            <label class="opt"><input type="radio" name="p3q16" value="4"> Nunca</label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>18. Ao longo da sua vida, qual porcentagem da sua dieta diária consistiu em frutas e vegetais?</legend>
+          <div class="options">
+            <label class="opt"><input type="radio" name="p3q17" value="1"> 75–100%</label>
+            <label class="opt"><input type="radio" name="p3q17" value="2"> 25–75%</label>
+            <label class="opt"><input type="radio" name="p3q17" value="3"> 10–25%</label>
+            <label class="opt"><input type="radio" name="p3q17" value="4"> 0–10%</label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>19. Qual é a cor natural da sua pele (sem bronzeamento ou autobronzeadores)?</legend>
+          <div class="options">
+            <label class="opt"><input type="radio" name="p3q18" value="1"> Escura</label>
+            <label class="opt"><input type="radio" name="p3q18" value="2"> Média</label>
+            <label class="opt"><input type="radio" name="p3q18" value="3"> Clara</label>
+            <label class="opt"><input type="radio" name="p3q18" value="4"> Muito clara</label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>20. Qual é a sua etnia?</legend>
+          <div class="options">
+            <label class="opt"><input type="radio" name="p3q19" value="1"> Afro-americano/Caribenho/Negro</label>
+            <label class="opt"><input type="radio" name="p3q19" value="2"> Asiático/Indiano/Mediterrâneo/Outro</label>
+            <label class="opt"><input type="radio" name="p3q19" value="3"> Latino-americano/Hispânico</label>
+            <label class="opt"><input type="radio" name="p3q19" value="4"> Caucasiano</label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>21. Informação extra: marque se tem 65 anos ou mais (aplica bônus +5 à parte ENRUGADA)</legend>
+          <div class="options">
+            <label class="opt"><input type="checkbox" name="age65" value="1"> Tenho 65 anos ou mais</label>
+          </div>
+        </fieldset>
+
+      </section>
+
+      <!-- botões -->
+      <div class="btns">
+        <button type="button" id="scrollTop" class="secondary">Ir para início</button>
+        <button type="reset" class="secondary">Limpar respostas</button>
+        <button type="button" id="calcBtn" class="right">Calcular resultado</button>
+      </div>
+
+      <div class="footer small-note">Observação: as pontuações usam os critérios originais do questionário.</div>
+    </form>
+
+    <!-- área de resultados -->
+    <div id="results" class="result" style="display:none;">
+      <h2>Resultados</h2>
+      <div id="scoresContainer"></div>
+
+      <div id="diagPrompt" style="margin-top:12px;display:none;">
+        <div class="muted">Algumas respostas indicam diagnóstico médico. Indique se o diagnóstico foi feito por:</div>
+        <div style="margin-top:8px">
+          <label class="opt"><input type="radio" name="diag" value="0" checked> Nenhum / Não aplicável</label>
+          <label class="opt"><input type="radio" name="diag" value="2"> Outro médico (+2)</label>
+          <label class="opt"><input type="radio" name="diag" value="5"> Dermatologista (+5)</label>
+        </div>
+        <div style="margin-top:8px">
+          <button id="applyDiag" class="secondary">Aplicar e recalcular</button>
+        </div>
+      </div>
+
+      <div style="margin-top:12px">
+        <button id="backBtn" class="secondary">Voltar ao questionário</button>
+        <button id="resetBtn" class="right">Reiniciar tudo</button>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    (function(){
+      // mapa de partes (0..3) -> codes e intervalos (usados para rótulos)
+      const thresholds = {
+        O_S: { typeRanges: [
+          {min:34, max:44, label:'Pele muito oleosa'},
+          {min:27, max:33, label:'Pele levemente oleosa'},
+          {min:17, max:26, label:'Pele levemente seca'},
+          {min:11, max:16, label:'Pele seca'}
+        ], typeLabel: (score)=> (score>=27? 'O (Oleosa)': 'S (Seca)') },
+        S_R: { ranges: [
+          {min:34, max:72, label:'Pele muito sensível'},
+          {min:30, max:33, label:'Pele um pouco sensível'},
+          {min:25, max:29, label:'Pele um pouco resistente'},
+          {min:18, max:24, label:'Pele muito resistente'}
+        ], typeLabel: (score)=> (score>=30? 'S (Sensível)': 'R (Resistente)') },
+        P_N: { ranges: [
+          {min:31, max:45, label:'Tipo P (Pigmentada)'},
+          {min:10, max:30, label:'Tipo N (Não pigmentada)'}
+        ], typeLabel: (score)=> (score>=31? 'P (Pigmentada)': 'N (Não pigmentada)') },
+        E_F: { ranges: [
+          {min:41, max:85, label:'E (Enrugada)'},
+          {min:20, max:40, label:'F (Firme)'}
+        ], typeLabel: (score)=> (score>=41? 'E (Enrugada)': 'F (Firme)') }
+      };
+
+      const form = document.getElementById('quizForm');
+      const calcBtn = document.getElementById('calcBtn');
+      const resultsEl = document.getElementById('results');
+      const scoresContainer = document.getElementById('scoresContainer');
+      const diagPrompt = document.getElementById('diagPrompt');
+      const applyDiag = document.getElementById('applyDiag');
+      const backBtn = document.getElementById('backBtn');
+      const resetBtn = document.getElementById('resetBtn');
+      const scrollTop = document.getElementById('scrollTop');
+
+      scrollTop.addEventListener('click', ()=> window.scrollTo({top:0,behavior:'smooth'}));
+      backBtn.addEventListener('click', ()=> {
+        resultsEl.style.display='none';
+        window.scrollTo({top:0,behavior:'smooth'});
+      });
+      resetBtn.addEventListener('click', ()=> {
+        form.reset();
+        resultsEl.style.display='none';
+        window.scrollTo({top:0,behavior:'smooth'});
+      });
+
+      // quais perguntas servem para detectar diagnóstico (parte 1-based index: part 2 => p1q2 and p1q5)
+      // detecta se o usuário respondeu 3 ou 4 nessas perguntas
+      function detectDiagnosisSelected(values){
+        // perguntas de diagnóstico no formulário: p1q2 (acne/rosácea) e p1q5 (dermatite/eczema)
+        const diagQs = ['p1q2','p1q5'];
+        return diagQs.some(k => {
+          const v = values[k];
+          return v !== undefined && v !== null && Number(v) >= 3;
+        });
+      }
+
+      function collectValues(){
+        const data = {};
+        const inputs = form.querySelectorAll('input[type="radio"]:checked, input[type="checkbox"]');
+        inputs.forEach(i => {
+          const name = i.name;
+          if(!name) return;
+          if(i.type==='checkbox'){
+            // only age65 checkbox (name 'age65') -> boolean
+            data[name] = i.checked ? 1 : 0;
+          } else {
+            data[name] = i.value;
+          }
+        });
+        return data;
+      }
+
+      function sumPart(partIndex, values){
+        // partIndex 0..3
+        // gather all inputs with name starting with p{partIndex}q
+        let sum = 0;
+        const prefix = 'p' + partIndex + 'q';
+        for(let i=0;i<100;i++){
+          const key = prefix + i;
+          if(!(key in values)) {
+            // if no answer selected for that question, skip
+            // but we don't know max/min here; just skip
+            continue;
+          }
+          const v = Number(values[key]);
+          if(!isNaN(v)) sum += v;
+        }
+        return sum;
+      }
+
+      function calculateAll(values, diagBonus=0, age65=false){
+        // sum per part
+        const o_s = sumPart(0, values);
+        const s_r = sumPart(1, values);
+        const p_n = sumPart(2, values);
+        let e_f = sumPart(3, values);
+
+        // apply diag bonus to S_R (parte 2) if provided
+        if(diagBonus) {
+          e_f = Number(e_f); // keep separate
+        }
+        let s_r_with = Number(s_r) + Number(diagBonus || 0);
+
+        // apply age65 bonus to E_F
+        if(age65) e_f = Number(e_f) + 5;
+
+        return {
+          O_S: Number(o_s),
+          S_R: Number(s_r_with),
+          P_N: Number(p_n),
+          E_F: Number(e_f)
+        };
+      }
+
+      function labelFromThreshold(key, score){
+        const info = thresholds[key];
+        if(!info) return '';
+        // find label
+        if(key === 'O_S'){
+          const ranges = info.typeRanges;
+          for(const r of ranges){
+            if(score >= r.min && score <= r.max) return r.label;
+          }
+          return info.typeLabel(score);
+        } else {
+          // ranges array
+          for(const r of info.ranges){
+            if(score >= r.min && score <= r.max) return r.label;
+          }
+          return info.typeLabel(score);
+        }
+      }
+
+      function showResults(diagNeeded=false){
+        const values = collectValues();
+        const diagSelected = detectDiagnosisSelected(values);
+        const age65 = !!values['age65'];
+
+        // initial compute with no diag bonus
+        const raw = calculateAll(values, 0, age65);
+
+        // prepare display
+        scoresContainer.innerHTML = '';
+
+        // show scoreboard
+        const mapping = {
+          O_S: 'O/S (Oleosa vs. Seca)',
+          S_R: 'S/R (Sensível vs. Resistente)',
+          P_N: 'P/N (Pigmentada vs. Não Pigmentada)',
+          E_F: 'E/F (Enrugada vs. Firme)'
+        };
+
+        for(const key of ['O_S','S_R','P_N','E_F']){
+          const block = document.createElement('div');
+          block.className = 'score-row';
+          const left = document.createElement('div');
+          left.innerHTML = `<strong>${mapping[key]}</strong><div class="muted">${labelFromThreshold(key, raw[key])}</div>`;
+          const right = document.createElement('div');
+          right.innerHTML = `<div><strong>${raw[key].toFixed(2)}</strong></div>`;
+          block.appendChild(left);
+          block.appendChild(right);
+          scoresContainer.appendChild(block);
+        }
+
+        // show combined type string
+        const finalType = `${raw.O_S >= 27 ? 'O' : 'S'}${raw.S_R >= 30 ? 'S' : 'R'}${raw.P_N >= 31 ? 'P' : 'N'}${raw.E_F >= 41 ? 'E' : 'F'}`;
+        const combined = document.createElement('div');
+        combined.style.marginTop = '12px';
+        combined.innerHTML = `<strong>Tipo de pele (resultado bruto):</strong> ${finalType}`;
+        scoresContainer.appendChild(combined);
+
+        // show diagnostic prompt only if diagnosis-related answers present and diag not yet applied.
+        if(diagSelected){
+          diagPrompt.style.display = 'block';
+        } else {
+          diagPrompt.style.display = 'none';
+        }
+
+        resultsEl.style.display='block';
+        window.scrollTo({top:0,behavior:'smooth'});
+      }
+
+      // main calc button
+      calcBtn.addEventListener('click', function(){
+        // quick validation: ensure user answered at least something
+        const values = collectValues();
+        const any = Object.keys(values).length > 0;
+        if(!any){
+          alert('Responda pelo menos uma pergunta antes de calcular.');
+          return;
+        }
+        showResults();
+      });
+
+      applyDiag.addEventListener('click', function(){
+        const diagValue = Number(document.querySelector('input[name="diag"]:checked').value || 0);
+        const values = collectValues();
+        const age65 = !!values['age65'];
+        const final = calculateAll(values, diagValue, age65);
+
+        // update display with applied bonuses
+        scoresContainer.innerHTML = '';
+        const mapping = {
+          O_S: 'O/S (Oleosa vs. Seca)',
+          S_R: 'S/R (Sensível vs. Resistente)',
+          P_N: 'P/N (Pigmentada vs. Não Pigmentada)',
+          E_F: 'E/F (Enrugada vs. Firme)'
+        };
+
+        for(const key of ['O_S','S_R','P_N','E_F']){
+          const block = document.createElement('div');
+          block.className = 'score-row';
+          const left = document.createElement('div');
+          left.innerHTML = `<strong>${mapping[key]}</strong><div class="muted">${labelFromThreshold(key, final[key])}</div>`;
+          const right = document.createElement('div');
+          right.innerHTML = `<div><strong>${final[key].toFixed(2)}</strong></div>`;
+          block.appendChild(left);
+          block.appendChild(right);
+          scoresContainer.appendChild(block);
+        }
+
+        const finalType = `${final.O_S >= 27 ? 'O' : 'S'}${final.S_R >= 30 ? 'S' : 'R'}${final.P_N >= 31 ? 'P' : 'N'}${final.E_F >= 41 ? 'E' : 'F'}`;
+        const combined = document.createElement('div');
+        combined.style.marginTop = '12px';
+        combined.innerHTML = `<strong>Tipo de pele (com bônus aplicados):</strong> ${finalType}`;
+        scoresContainer.appendChild(combined);
+
+        // hide diag prompt after applying
+        diagPrompt.style.display = 'none';
+      });
+
+    })();
+  </script>
+</body>
+</html>
