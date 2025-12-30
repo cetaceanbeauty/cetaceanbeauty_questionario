@@ -43,14 +43,17 @@
 
       <!-- INFORMAÇÕES DO USUÁRIO (obrigatório, antes do questionário) -->
       <fieldset>
-        <legend>Preencha seus dados por favor</legend>
-        <label class="input">Nome (obrigatório)
-          <input type="text" id="userName" name="userName" required placeholder="Seu nome completo" />
-        </label>
-        <label class="input">E-mail (obrigatório)
-          <input type="email" id="userEmail" name="userEmail" required placeholder="seu@exemplo.com" />
-        </label>
-      </fieldset>
+<legend>Preencha seus dados por favor</legend>
+<label class="input">Nome
+<input type="text" id="userName" name="userName" required placeholder="Seu nome" />
+</label>
+<label class="input">Sobrenome
+<input type="text" id="userSurname" name="userSurname" required placeholder="Seu sobrenome" />
+</label>
+<label class="input">E-mail
+<input type="email" id="userEmail" name="userEmail" required placeholder="seu@exemplo.com" />
+</label>
+</fieldset>
 
       <!-- PARTE 1 -->
       <section data-part="0">
@@ -1006,7 +1009,9 @@
     <legend>Observações gerais</legend>
     <input type="text" name="q2_obs" placeholder="Anotações adicionais">
   </fieldset>
-
+<div class="btns" style="margin-top:20px">
+  <button type="button" id="calcQ2Btn" class="right">Enviar Questionário 2</button>
+</div>
 </section>
 
     </form>
@@ -1037,16 +1042,9 @@
         <button id="resetBtn" class="right">Reiniciar tudo</button>
       </div>
 
-      <div style="margin-top:12px">
-        <h3>Relatório (JSON)</h3>
-        <pre id="reportJson" class="clip"></pre>
-      </div>
 
-      <div style="margin-top:8px;display:flex;gap:8px">
-        <button id="mailBtn">Abrir e-mail (enviar para cetaceanbeauty@gmail.com)</button>
-        <button id="downloadBtn" class="secondary">Baixar relatório (JSON)</button>
-        <button id="copyJson" class="secondary">Copiar JSON</button>
-      </div>
+
+      
 
     </div>
 
@@ -1084,10 +1082,7 @@
       const scoresContainer = document.getElementById('scoresContainer');
       const typeResultEl = document.getElementById('typeResult');
       const typeLabelsEl = document.getElementById('typeLabels');
-      const reportJsonEl = document.getElementById('reportJson');
-      const mailBtn = document.getElementById('mailBtn');
-      const downloadBtn = document.getElementById('downloadBtn');
-      const copyJsonBtn = document.getElementById('copyJson');
+      
       const backBtn = document.getElementById('backBtn');
       const resetBtn = document.getElementById('resetBtn');
       const scrollTop = document.getElementById('scrollTop');
@@ -1173,6 +1168,41 @@
       }
 
       // Construir o JSON final (inclui rastreamento das perguntas de diagnóstico)
+function buildEmailBody(user, values, scores, finalTypeLetters){
+const lines = [];
+lines.push( `Nome: ${user.name}` );
+lines.push( `Sobrenome: ${user.surname}` );
+lines.push( `E-mail: ${user.email}` );
+lines.push( `Data: ${new Date().toLocaleString('pt-BR')}` );
+lines.push('');
+lines.push('PARTE 1 - OLEOSA VS SECA');
+for(let i=0; i<=10; i++){
+const key = 'p0q'+i;
+if(values[key]) lines.push( `${i+1}. ${values[key]}` );
+}
+lines.push('');
+lines.push('PARTE 2 - SENSÍVEL VS RESISTENTE');
+for(let i=0; i<=17; i++){
+const key = 'p1q'+i;
+if(values[key]) lines.push( `${i+1}. ${values[key]}` );
+}
+lines.push('');
+lines.push('PARTE 3 - PIGMENTADA VS NÃO PIGMENTADA');
+for(let i=0; i<=9; i++){
+const key = 'p2q'+i;
+if(values[key]) lines.push( `${i+1}. ${values[key]}` );
+}
+lines.push('');
+lines.push('PARTE 4 - ENRUGADA VS FIRME');
+for(let i=0; i<=20; i++){
+const key = 'p3q'+i;
+if(values[key]) lines.push( `${i+1}. ${values[key]}` );
+}
+lines.push('');
+lines.push( `RESULTADO: ${finalTypeLetters}` );
+lines.push( `Pontuações: O/S=${scores.O_S.toFixed(2)}, S/R=${scores.S_R.toFixed(2)}, P/N=${scores.P_N.toFixed(2)}, E/F=${scores.E_F.toFixed(2)}` );
+return lines.join('\n');
+}
       function buildReportJSON(user, values, scores, finalTypeLetters){
         const dateISO = new Date().toISOString();
         const tracked = {
@@ -1180,7 +1210,7 @@
           p1q5: values['p1q5'] === null ? null : values['p1q5']
         };
         return {
-          user: { name: user.name, email: user.email },
+          user: { name: user.name, surname: user.surname, email: user.email },
           date: dateISO,
           scores,
           finalTypeLetters,
@@ -1197,13 +1227,13 @@
 
      // mostrar resultados (sem forçar scroll para topo)
       calcBtn.addEventListener('click', function(){
-        // validar nome e email
-        const name = document.getElementById('userName').value.trim();
-        const email = document.getElementById('userEmail').value.trim();
-        if(!name || !email){
-          alert('Preencha Nome e E-mail antes de calcular.');
-          return;
-        }
+const name = document.getElementById('userName').value.trim();
+const surname = document.getElementById('userSurname').value.trim();
+const email = document.getElementById('userEmail').value.trim();
+if(!name || !surname || !email){
+alert('Preencha todos os campos antes de calcular.');
+return;
+}
 
         const values = collectValues();
         const diagNeeded = detectDiagnosisSelected(values);
@@ -1243,14 +1273,80 @@
         typeLabelsEl.textContent = `Rótulos (English): ${labelsEN.join(' , ')}`;
 
         const q2 = collectQ2Answers();
-        const report = buildReportJSON({name, email}, values, raw, finalTypeLetters);
+        const report = buildReportJSON({name, surname, email}, values, raw, finalTypeLetters);
         if(q2) report.questionnaire2 = q2;
         window.__baumann_report_json = report;
-        reportJsonEl.textContent = JSON.stringify(report, null, 2);
+      
+const emailBody = buildEmailBody({name, surname, email}, values, raw, finalTypeLetters);
+const subject = encodeURIComponent( `Questionario - ${name} ${surname}` );
+const bodyEncoded = encodeURIComponent(emailBody);
+resultsEl.style.display = 'block';
+window.location.href = `mailto:cetaceanbeauty@gmail.com?subject=${subject}&body=${bodyEncoded}`;
 
-        resultsEl.style.display = 'block';
       });
-
+function buildQ2EmailBody(user, q2data){
+const lines = [];
+lines.push( `Nome: ${user.name}` );
+lines.push( `Sobrenome: ${user.surname}` );
+lines.push( `E-mail: ${user.email}` );
+lines.push( `Data: ${new Date().toLocaleString('pt-BR')}` );
+lines.push('');
+lines.push('=== QUESTIONÁRIO 2 - AVALIAÇÃO CLÍNICA ===');
+lines.push('');
+lines.push( `Queixas principais: ${q2data.complaints.join(', ') || 'Nenhuma'}` );
+lines.push('');
+lines.push('POROS');
+lines.push( `Localização: ${q2data.poros.locations.join(', ') || 'N/A'}` );
+lines.push( `Severidade: ${q2data.poros.severity || 'N/A'}` );
+lines.push( `Textura: ${q2data.poros.texture || 'N/A'}` );
+lines.push( `Histórico: ${q2data.poros.history || 'N/A'}` );
+lines.push('');
+lines.push('RUGAS - Testa');
+lines.push( `Presença: ${q2data.rugas.testa.has || 'N/A'}` );
+lines.push( `Quantidade: ${q2data.rugas.testa.qty || 'N/A'}` );
+lines.push( `Visibilidade: ${q2data.rugas.testa.visibility || 'N/A'}` );
+lines.push( `Profundidade: ${q2data.rugas.testa.depth || 'N/A'}` );
+lines.push('');
+lines.push('RUGAS - Glabela');
+lines.push( `Presença: ${q2data.rugas.glabela.has || 'N/A'}` );
+lines.push( `Quantidade: ${q2data.rugas.glabela.qty || 'N/A'}` );
+lines.push( `Visibilidade: ${q2data.rugas.glabela.visibility || 'N/A'}` );
+lines.push( `Profundidade: ${q2data.rugas.glabela.depth || 'N/A'}` );
+lines.push('');
+lines.push('RUGAS - Pés de Galinha');
+lines.push( `Presença: ${q2data.rugas.pesdegalinha.has || 'N/A'}` );
+lines.push( `Quantidade: ${q2data.rugas.pesdegalinha.qty || 'N/A'}` );
+lines.push( `Profundidade: ${q2data.rugas.pesdegalinha.depth || 'N/A'}` );
+lines.push('');
+lines.push('OUTRAS RUGAS');
+lines.push( `Sob os olhos: ${q2data.rugas.sob_olhos.has || 'N/A'}` );
+lines.push( `Pálpebra superior: ${q2data.rugas.palpebra_sup.has || 'N/A'}` );
+lines.push( `Bochechas - Sulco: ${q2data.rugas.bochechas.sulco || 'N/A'}` );
+lines.push( `Bochechas - Perda firmeza: ${q2data.rugas.bochechas.perda_firmeza || 'N/A'}` );
+lines.push( `Código de barras: ${q2data.rugas.codigo_barras.has || 'N/A'}` );
+lines.push( `Bigode chinês: ${q2data.rugas.bigode_chines.has || 'N/A'}` );
+lines.push( `Linhas marionete: ${q2data.rugas.marionete.has || 'N/A'}` );
+lines.push( `Pescoço: ${q2data.rugas.pescoco.has || 'N/A'}` );
+lines.push('');
+lines.push('CRAVOS');
+lines.push( `Localização: ${q2data.cravos.location || 'N/A'}` );
+lines.push( `Especificação: ${q2data.cravos.location_spec || 'N/A'}` );
+lines.push( `Tipos: ${q2data.cravos.types.join(', ') || 'N/A'}` );
+lines.push( `Quantidade: ${q2data.cravos.quantity || 'N/A'}` );
+lines.push( `Inflamação: ${q2data.cravos.inflammation || 'N/A'}` );
+lines.push( `Oleosidade corporal: ${q2data.cravos.oily || 'N/A'}` );
+lines.push('');
+lines.push('SARDAS/MANCHAS');
+lines.push( `Presença: ${q2data.sardas.has || 'N/A'}` );
+lines.push( `Localizações: ${q2data.sardas.locations.join(', ') || 'N/A'}` );
+lines.push( `Quantidade: ${q2data.sardas.quantity || 'N/A'}` );
+lines.push('');
+lines.push('HISTÓRICO');
+lines.push( `Desde quando: ${q2data.history_since || 'N/A'}` );
+lines.push( `Tratamentos anteriores: ${q2data.history_treat || 'N/A'}` );
+lines.push( `Observações: ${q2data.obs || 'N/A'}` );
+return lines.join('\n');
+}
       function collectQ2Answers(){
         const root = document.getElementById('questionnaire2');
         if(!root) return null;
@@ -1273,45 +1369,30 @@
         return out;
       }
 
-      mailBtn.addEventListener('click', ()=> {
-        const data = window.__baumann_report_json;
-        if(!data){ alert('Gere o relatório antes de enviar.'); return; }
-        const to = 'cetaceanbeauty@gmail.com';
-        const subject = encodeURIComponent(`Relatório Baumann — ${data.user.name} — ${new Date().toLocaleDateString('pt-BR')}`);
-        const bodyObj = {
-          Nome: data.user.name,
-          Email: data.user.email,
-          Data_questionario: data.date,
-          Tipo_letras: data.finalTypeLetters,
-          Labels_EN: data.labelsEN,
-          Tracked: data.trackedDiagnostics,
-          Respostas_selecionadas: data.answers
-        };
-        const body = encodeURIComponent(JSON.stringify(bodyObj, null, 2));
-        window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
-      });
+  
 
-      downloadBtn.addEventListener('click', ()=> {
-        const data = window.__baumann_report_json;
-        if(!data){ alert('Gere o relatório antes.'); return; }
-        const blob = new Blob([JSON.stringify(data,null,2)], {type:'application/json'});
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = 'baumann_report.json';
-        document.body.appendChild(a);
-        a.click();
-        a.remove();
-        URL.revokeObjectURL(url);
-      });
+      
 
-      copyJsonBtn.addEventListener('click', ()=> {
-        const data = window.__baumann_report_json;
-        if(!data){ alert('Gere o relatório antes.'); return; }
-        navigator.clipboard && navigator.clipboard.writeText(JSON.stringify(data,null,2));
-        alert('JSON copiado para área de transferência.');
-      });
-
+ 
+const calcQ2Btn = document.getElementById('calcQ2Btn');
+calcQ2Btn.addEventListener('click', function(){
+const name = document.getElementById('userName').value.trim();
+const surname = document.getElementById('userSurname').value.trim();
+const email = document.getElementById('userEmail').value.trim();
+if(!name || !surname || !email){
+alert('Preencha Nome, Sobrenome e E-mail no início do formulário antes de enviar o Questionário 2.');
+return;
+}
+const q2data = collectQ2Answers();
+if(!q2data){
+alert('Erro ao coletar dados do Questionário 2.');
+return;
+}
+const q2EmailBody = buildQ2EmailBody({name, surname, email}, q2data);
+const q2Subject = encodeURIComponent( `Questionario - ${name} ${surname}` );
+const q2BodyEncoded = encodeURIComponent(q2EmailBody);
+window.location.href = `mailto:cetaceanbeauty@gmail.com?subject=${q2Subject}&body=${q2BodyEncoded}`;
+});
 })();
   </script>
 
