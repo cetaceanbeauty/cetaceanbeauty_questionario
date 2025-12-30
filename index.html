@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Questionário de Tipo de Pele Baumann</title>
+  <title>Questionário de Tipo de Pele — Baumann</title>
   <style>
     body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; margin:0; padding:20px; background:#f7fafc; color:#111827; }
     .container{max-width:900px;margin:0 auto;background:#fff;padding:20px;border-radius:8px;box-shadow:0 6px 18px rgba(0,0,0,.06);}
@@ -25,6 +25,13 @@
     .small-note{font-size:13px;color:#374151}
     .footer{margin-top:18px;font-size:13px;color:#6b7280}
     a.link{color:#0ea5a4}
+    /* caixas separadas para soma e resultado final */
+    .boxes{display:flex;gap:12px;flex-wrap:wrap;margin-top:12px}
+    .box{flex:1;min-width:260px;padding:12px;border-radius:8px;background:#fff;border:1px solid #e6e9ee}
+    .box h3{margin:0 0 8px;font-size:14px}
+    pre.clip{white-space:pre-wrap;background:#fff;padding:10px;border-radius:6px;border:1px solid #e6e9ee;max-height:360px;overflow:auto}
+    input[type="text"], input[type="email"]{width:100%;padding:8px;border-radius:6px;border:1px solid #d1d5db}
+    label.input{display:block;margin-bottom:8px;font-weight:600}
   </style>
 </head>
 <body>
@@ -33,6 +40,17 @@
     <p class="small">Responda sinceramente. Após preencher tudo, clique em <strong>Calcular resultado</strong>.</p>
 
     <form id="quizForm">
+
+      <!-- INFORMAÇÕES DO USUÁRIO (obrigatório, antes do questionário) -->
+      <fieldset>
+        <legend>Preencha seus dados por favor</legend>
+        <label class="input">Nome (obrigatório)
+          <input type="text" id="userName" name="userName" required placeholder="Seu nome completo" />
+        </label>
+        <label class="input">E-mail (obrigatório)
+          <input type="email" id="userEmail" name="userEmail" required placeholder="seu@exemplo.com" />
+        </label>
+      </fieldset>
 
       <!-- PARTE 1 -->
       <section data-part="0">
@@ -209,12 +227,12 @@
             <label class="opt"><input type="radio" name="p1q4" value="2"> Raramente</label>
             <label class="opt"><input type="radio" name="p1q4" value="3"> Frequentemente</label>
             <label class="opt"><input type="radio" name="p1q4" value="4"> Sempre</label>
-            <label class="opt"><input type="radio" name="p1q4" value="2.5"> Nunca uso protetor solar</label>
+            <label class="opt"><input type="radio" name="p1q4" value="2.5"> Eu nunca uso protetor solar</label>
           </div>
         </fieldset>
 
         <fieldset>
-          <legend>6. Você já foi diagnosticado(a) com dermatite atópica, eczema ou dermatite de contato?</legend>
+          <legend>6. Você já foi diagnosticado(a) com dermatite atópica, eczema ou dermatite de contato (uma erupção cutânea alérgica)?</legend>
           <div class="options">
             <label class="opt"><input type="radio" name="p1q5" value="1"> Não</label>
             <label class="opt"><input type="radio" name="p1q5" value="2"> Amigos me dizem que tenho</label>
@@ -231,23 +249,23 @@
             <label class="opt"><input type="radio" name="p1q6" value="2"> Raramente</label>
             <label class="opt"><input type="radio" name="p1q6" value="3"> Frequentemente</label>
             <label class="opt"><input type="radio" name="p1q6" value="4"> Sempre</label>
-            <label class="opt"><input type="radio" name="p1q6" value="2.5"> Não uso anéis</label>
+            <label class="opt"><input type="radio" name="p1q6" value="2.5"> Eu não uso anéis</label>
           </div>
         </fieldset>
 
         <fieldset>
-          <legend>8. Banho de espuma perfumado, óleo de massagem ou loções corporais provocam espinhas, coceira ou ressecamento:</legend>
+          <legend>8. Banho de espuma perfumado, óleo de massagem ou loções corporais fazem sua pele ter espinhas, coçar ou ficar seca:</legend>
           <div class="options">
             <label class="opt"><input type="radio" name="p1q7" value="1"> Nunca</label>
             <label class="opt"><input type="radio" name="p1q7" value="2"> Raramente</label>
             <label class="opt"><input type="radio" name="p1q7" value="3"> Frequentemente</label>
             <label class="opt"><input type="radio" name="p1q7" value="4"> Sempre</label>
-            <label class="opt"><input type="radio" name="p1q7" value="2.5"> Nunca uso esses produtos (responda 'Sempre' se não usa porque causam problemas)</label>
+            <label class="opt"><input type="radio" name="p1q7" value="2.5"> Eu nunca uso esses tipos de produtos. (Nota: Responda 4 se você não os usa porque causam os problemas mencionados.)</label>
           </div>
         </fieldset>
 
         <fieldset>
-          <legend>9. Você consegue usar o sabonete de hotéis no corpo ou rosto sem problema?</legend>
+          <legend>9. Você consegue usar o sabonete fornecido em hotéis no corpo ou rosto sem problema?</legend>
           <div class="options">
             <label class="opt"><input type="radio" name="p1q8" value="1"> Sim</label>
             <label class="opt"><input type="radio" name="p1q8" value="2"> Na maioria das vezes, não tenho problema</label>
@@ -322,7 +340,7 @@
         </fieldset>
 
         <fieldset>
-          <legend>16. Seu rosto aparece vermelho em fotografias:</legend>
+          <legend>16. Seu rosto aparece vermelho em fotografias?</legend>
           <div class="options">
             <label class="opt"><input type="radio" name="p1q15" value="1"> Nunca, ou nunca notei</label>
             <label class="opt"><input type="radio" name="p1q15" value="2"> Às vezes</label>
@@ -332,7 +350,7 @@
         </fieldset>
 
         <fieldset>
-          <legend>17. As pessoas perguntam se você está queimado(a) de sol, mesmo quando não está:</legend>
+          <legend>17. As pessoas perguntam se você está queimado(a) de sol, mesmo quando não está?</legend>
           <div class="options">
             <label class="opt"><input type="radio" name="p1q16" value="1"> Nunca</label>
             <label class="opt"><input type="radio" name="p1q16" value="2"> Às vezes</label>
@@ -463,7 +481,6 @@
             <label class="opt"><input type="radio" name="p2q9" value="4"> Ruivo</label>
           </div>
         </fieldset>
-
       </section>
 
       <!-- PARTE 4 -->
@@ -700,17 +717,20 @@
     <!-- área de resultados -->
     <div id="results" class="result" style="display:none;">
       <h2>Resultados</h2>
-      <div id="scoresContainer"></div>
 
-      <div id="diagPrompt" style="margin-top:12px;display:none;">
-        <div class="muted">Algumas respostas indicam diagnóstico médico. Indique se o diagnóstico foi feito por:</div>
-        <div style="margin-top:8px">
-          <label class="opt"><input type="radio" name="diag" value="0" checked> Nenhum / Não aplicável</label>
-          <label class="opt"><input type="radio" name="diag" value="2"> Outro médico (+2)</label>
-          <label class="opt"><input type="radio" name="diag" value="5"> Dermatologista (+5)</label>
+      <div class="boxes">
+        <div class="box" id="scoresBox">
+          <h3>Somas por parte</h3>
+          <div id="scoresContainer"></div>
         </div>
-        <div style="margin-top:8px">
-          <button id="applyDiag" class="secondary">Aplicar e recalcular</button>
+
+        <div class="box" id="typeBox">
+          <h3>Tipo de pele — resultado</h3>
+          <div id="typeResult" style="font-weight:700;font-size:18px;margin-bottom:8px"></div>
+          <div class="muted" id="typeLabels" style="font-size:13px">
+            <!-- rótulos com a versão em inglês entre parênteses -->
+            <!-- Ex.: O (Oily), S (Dry), S (Sensitive), R (Resistant), P (Pigmented), N (Non-pigmented), E (Wrinkled), F (Firm) -->
+          </div>
         </div>
       </div>
 
@@ -718,116 +738,104 @@
         <button id="backBtn" class="secondary">Voltar ao questionário</button>
         <button id="resetBtn" class="right">Reiniciar tudo</button>
       </div>
+
+      <div style="margin-top:12px">
+        <h3>Relatório (JSON)</h3>
+        <pre id="reportJson" class="clip"></pre>
+      </div>
+
+      <div style="margin-top:8px;display:flex;gap:8px">
+        <button id="mailBtn">Abrir e-mail (enviar para cetaceanbeauty@gmail.com)</button>
+        <button id="downloadBtn" class="secondary">Baixar relatório (JSON)</button>
+        <button id="copyJson" class="secondary">Copiar JSON</button>
+      </div>
+
     </div>
 
   </div>
 
   <script>
     (function(){
-      // mapa de partes (0..3) -> codes e intervalos (usados para rótulos)
+      // thresholds / labels (mantidos)
       const thresholds = {
         O_S: { typeRanges: [
           {min:34, max:44, label:'Pele muito oleosa'},
           {min:27, max:33, label:'Pele levemente oleosa'},
           {min:17, max:26, label:'Pele levemente seca'},
           {min:11, max:16, label:'Pele seca'}
-        ], typeLabel: (score)=> (score>=27? 'O (Oleosa)': 'S (Seca)') },
+        ], typeLabelPT: (score)=> (score>=27? 'O (Oleosa)': 'S (Seca)'), typeLabelEN: (score)=> (score>=27? 'O (Oily)': 'S (Dry)') },
         S_R: { ranges: [
           {min:34, max:72, label:'Pele muito sensível'},
           {min:30, max:33, label:'Pele um pouco sensível'},
           {min:25, max:29, label:'Pele um pouco resistente'},
           {min:18, max:24, label:'Pele muito resistente'}
-        ], typeLabel: (score)=> (score>=30? 'S (Sensível)': 'R (Resistente)') },
+        ], typeLabelPT: (score)=> (score>=30? 'S (Sensível)': 'R (Resistente)'), typeLabelEN: (score)=> (score>=30? 'S (Sensitive)': 'R (Resistant)') },
         P_N: { ranges: [
           {min:31, max:45, label:'Tipo P (Pigmentada)'},
           {min:10, max:30, label:'Tipo N (Não pigmentada)'}
-        ], typeLabel: (score)=> (score>=31? 'P (Pigmentada)': 'N (Não pigmentada)') },
+        ], typeLabelPT: (score)=> (score>=31? 'P (Pigmentada)': 'N (Não pigmentada)'), typeLabelEN: (score)=> (score>=31? 'P (Pigmented)': 'N (Non-pigmented)') },
         E_F: { ranges: [
           {min:41, max:85, label:'E (Enrugada)'},
           {min:20, max:40, label:'F (Firme)'}
-        ], typeLabel: (score)=> (score>=41? 'E (Enrugada)': 'F (Firme)') }
+        ], typeLabelPT: (score)=> (score>=41? 'E (Enrugada)': 'F (Firme)'), typeLabelEN: (score)=> (score>=41? 'E (Wrinkled)': 'F (Firm)') }
       };
 
       const form = document.getElementById('quizForm');
       const calcBtn = document.getElementById('calcBtn');
       const resultsEl = document.getElementById('results');
       const scoresContainer = document.getElementById('scoresContainer');
-      const diagPrompt = document.getElementById('diagPrompt');
-      const applyDiag = document.getElementById('applyDiag');
+      const typeResultEl = document.getElementById('typeResult');
+      const typeLabelsEl = document.getElementById('typeLabels');
+      const reportJsonEl = document.getElementById('reportJson');
+      const mailBtn = document.getElementById('mailBtn');
+      const downloadBtn = document.getElementById('downloadBtn');
+      const copyJsonBtn = document.getElementById('copyJson');
       const backBtn = document.getElementById('backBtn');
       const resetBtn = document.getElementById('resetBtn');
       const scrollTop = document.getElementById('scrollTop');
 
       scrollTop.addEventListener('click', ()=> window.scrollTo({top:0,behavior:'smooth'}));
-      backBtn.addEventListener('click', ()=> {
-        resultsEl.style.display='none';
-        window.scrollTo({top:0,behavior:'smooth'});
-      });
-      resetBtn.addEventListener('click', ()=> {
-        form.reset();
-        resultsEl.style.display='none';
-        window.scrollTo({top:0,behavior:'smooth'});
-      });
+      backBtn.addEventListener('click', ()=> { resultsEl.style.display='none'; });
+      resetBtn.addEventListener('click', ()=> { form.reset(); resultsEl.style.display='none'; window.__baumann_report_json = null; });
 
-      // quais perguntas servem para detectar diagnóstico (parte 1-based index: part 2 => p1q2 and p1q5)
-      // detecta se o usuário respondeu 3 ou 4 nessas perguntas
-      function detectDiagnosisSelected(values){
-        // perguntas de diagnóstico no formulário: p1q2 (acne/rosácea) e p1q5 (dermatite/eczema)
-        const diagQs = ['p1q2','p1q5'];
-        return diagQs.some(k => {
-          const v = values[k];
-          return v !== undefined && v !== null && Number(v) >= 3;
-        });
-      }
-
+      // coleta apenas respostas marcadas (rápido) — mantido para cálculo
       function collectValues(){
         const data = {};
-        const inputs = form.querySelectorAll('input[type="radio"]:checked, input[type="checkbox"]');
-        inputs.forEach(i => {
-          const name = i.name;
-          if(!name) return;
-          if(i.type==='checkbox'){
-            // only age65 checkbox (name 'age65') -> boolean
-            data[name] = i.checked ? 1 : 0;
-          } else {
-            data[name] = i.value;
-          }
+        // radios
+        const radios = form.querySelectorAll('input[type="radio"]');
+        radios.forEach(r=>{
+          if(r.checked) data[r.name] = r.value;
+          else if(!(r.name in data)) data[r.name] = null;
+        });
+        // checkboxes (age65 only here) -> boolean 1/0
+        const checks = form.querySelectorAll('input[type="checkbox"]');
+        checks.forEach(c=>{
+          data[c.name] = c.checked ? c.value : 0;
         });
         return data;
       }
 
+      // soma por parte usando prefix p{partIndex}q{number}
       function sumPart(partIndex, values){
-        // partIndex 0..3
-        // gather all inputs with name starting with p{partIndex}q
         let sum = 0;
         const prefix = 'p' + partIndex + 'q';
-        for(let i=0;i<100;i++){
-          const key = prefix + i;
-          if(!(key in values)) {
-            // if no answer selected for that question, skip
-            // but we don't know max/min here; just skip
-            continue;
+        // iterate keys in values
+        Object.keys(values).forEach(k=>{
+          if(k.startsWith(prefix) && values[k] !== null && values[k] !== undefined && values[k] !== 0){
+            const v = Number(values[k]);
+            if(!isNaN(v)) sum += v;
           }
-          const v = Number(values[key]);
-          if(!isNaN(v)) sum += v;
-        }
+        });
         return sum;
       }
 
       function calculateAll(values, diagBonus=0, age65=false){
-        // sum per part
         const o_s = sumPart(0, values);
         const s_r = sumPart(1, values);
         const p_n = sumPart(2, values);
         let e_f = sumPart(3, values);
 
-        // apply diag bonus to S_R (parte 2) if provided
-        if(diagBonus) {
-          e_f = Number(e_f); // keep separate
-        }
-        let s_r_with = Number(s_r) + Number(diagBonus || 0);
-
-        // apply age65 bonus to E_F
+        const s_r_with = Number(s_r) + Number(diagBonus || 0);
         if(age65) e_f = Number(e_f) + 5;
 
         return {
@@ -838,37 +846,76 @@
         };
       }
 
-      function labelFromThreshold(key, score){
+      function labelFromThresholdPT(key, score){
         const info = thresholds[key];
         if(!info) return '';
-        // find label
         if(key === 'O_S'){
-          const ranges = info.typeRanges;
-          for(const r of ranges){
+          for(const r of info.typeRanges){
             if(score >= r.min && score <= r.max) return r.label;
           }
-          return info.typeLabel(score);
+          return info.typeLabelPT(score);
         } else {
-          // ranges array
           for(const r of info.ranges){
             if(score >= r.min && score <= r.max) return r.label;
           }
-          return info.typeLabel(score);
+          return info.typeLabelPT(score);
         }
       }
+      function labelFromThresholdEN(key, score){
+        return thresholds[key].typeLabelEN(score);
+      }
 
-      function showResults(diagNeeded=false){
+      // detecta se perguntas de diagnóstico (p1q2 e p1q5) têm resposta >=3
+      function detectDiagnosisSelected(values){
+        const diagQs = ['p1q2','p1q5'];
+        return diagQs.some(k => {
+          const v = values[k];
+          return v !== undefined && v !== null && Number(v) >= 3;
+        });
+      }
+
+      // Construir o JSON final (inclui rastreamento das perguntas de diagnóstico)
+      function buildReportJSON(user, values, scores, finalTypeLetters){
+        const dateISO = new Date().toISOString();
+        const tracked = {
+          p1q2: values['p1q2'] === null ? null : values['p1q2'],
+          p1q5: values['p1q5'] === null ? null : values['p1q5']
+        };
+        return {
+          user: { name: user.name, email: user.email },
+          date: dateISO,
+          scores,
+          finalTypeLetters,
+          labelsEN: {
+            O_S: labelFromThresholdEN('O_S', scores.O_S),
+            S_R: labelFromThresholdEN('S_R', scores.S_R),
+            P_N: labelFromThresholdEN('P_N', scores.P_N),
+            E_F: labelFromThresholdEN('E_F', scores.E_F)
+          },
+          answers: values,
+          trackedDiagnostics: tracked
+        };
+      }
+
+      // mostrar resultados (sem forçar scroll para topo)
+      calcBtn.addEventListener('click', function(){
+        // validar nome e email
+        const name = document.getElementById('userName').value.trim();
+        const email = document.getElementById('userEmail').value.trim();
+        if(!name || !email){
+          alert('Preencha Nome e E-mail antes de calcular.');
+          return;
+        }
+
         const values = collectValues();
-        const diagSelected = detectDiagnosisSelected(values);
-        const age65 = !!values['age65'];
+        const diagNeeded = detectDiagnosisSelected(values);
+        const age65 = !!(values['age65'] && Number(values['age65']) === 1);
 
-        // initial compute with no diag bonus
+        // calcular sem bônus inicial (usuário pode interpretar/usar se quiser)
         const raw = calculateAll(values, 0, age65);
 
-        // prepare display
+        // montar visualização de somas
         scoresContainer.innerHTML = '';
-
-        // show scoreboard
         const mapping = {
           O_S: 'O/S (Oleosa vs. Seca)',
           S_R: 'S/R (Sensível vs. Resistente)',
@@ -880,7 +927,7 @@
           const block = document.createElement('div');
           block.className = 'score-row';
           const left = document.createElement('div');
-          left.innerHTML = `<strong>${mapping[key]}</strong><div class="muted">${labelFromThreshold(key, raw[key])}</div>`;
+          left.innerHTML = `<strong>${mapping[key]}</strong><div class="muted">${labelFromThresholdPT(key, raw[key])}</div>`;
           const right = document.createElement('div');
           right.innerHTML = `<div><strong>${raw[key].toFixed(2)}</strong></div>`;
           block.appendChild(left);
@@ -888,74 +935,327 @@
           scoresContainer.appendChild(block);
         }
 
-        // show combined type string
-        const finalType = `${raw.O_S >= 27 ? 'O' : 'S'}${raw.S_R >= 30 ? 'S' : 'R'}${raw.P_N >= 31 ? 'P' : 'N'}${raw.E_F >= 41 ? 'E' : 'F'}`;
-        const combined = document.createElement('div');
-        combined.style.marginTop = '12px';
-        combined.innerHTML = `<strong>Tipo de pele (resultado bruto):</strong> ${finalType}`;
-        scoresContainer.appendChild(combined);
+        // resultado final (letras)
+        const finalTypeLetters = `${raw.O_S >= 27 ? 'O' : 'S'}${raw.S_R >= 30 ? 'S' : 'R'}${raw.P_N >= 31 ? 'P' : 'N'}${raw.E_F >= 41 ? 'E' : 'F'}`;
+        typeResultEl.textContent = finalTypeLetters;
 
-        // show diagnostic prompt only if diagnosis-related answers present and diag not yet applied.
-        if(diagSelected){
-          diagPrompt.style.display = 'block';
-        } else {
-          diagPrompt.style.display = 'none';
-        }
+        // mostrar rótulos em inglês entre parênteses (como solicitado)
+        const labelsEN = [
+          labelFromThresholdEN('O_S', raw.O_S),
+          labelFromThresholdEN('S_R', raw.S_R),
+          labelFromThresholdEN('P_N', raw.P_N),
+          labelFromThresholdEN('E_F', raw.E_F)
+        ];
+        // exibir de forma clara: por parte
+        typeLabelsEl.textContent = `Rótulos (English): ${labelsEN.join(' , ')}`;
 
-        resultsEl.style.display='block';
-        window.scrollTo({top:0,behavior:'smooth'});
-      }
+        // construir e exibir JSON (para download / envio)
+        const report = buildReportJSON({name, email}, values, raw, finalTypeLetters);
+        window.__baumann_report_json = report;
+        reportJsonEl.textContent = JSON.stringify(report, null, 2);
 
-      // main calc button
-      calcBtn.addEventListener('click', function(){
-        // quick validation: ensure user answered at least something
-        const values = collectValues();
-        const any = Object.keys(values).length > 0;
-        if(!any){
-          alert('Responda pelo menos uma pergunta antes de calcular.');
-          return;
-        }
-        showResults();
+        // exibir área de resultados (sem scroll automático)
+        resultsEl.style.display = 'block';
       });
 
-      applyDiag.addEventListener('click', function(){
-        const diagValue = Number(document.querySelector('input[name="diag"]:checked').value || 0);
-        const values = collectValues();
-        const age65 = !!values['age65'];
-        const final = calculateAll(values, diagValue, age65);
-
-        // update display with applied bonuses
-        scoresContainer.innerHTML = '';
-        const mapping = {
-          O_S: 'O/S (Oleosa vs. Seca)',
-          S_R: 'S/R (Sensível vs. Resistente)',
-          P_N: 'P/N (Pigmentada vs. Não Pigmentada)',
-          E_F: 'E/F (Enrugada vs. Firme)'
+      // abrir mail client com body JSON (destino cetaceanbeauty@gmail.com)
+      mailBtn.addEventListener('click', ()=> {
+        const data = window.__baumann_report_json;
+        if(!data){ alert('Gere o relatório antes de enviar.'); return; }
+        const to = 'cetaceanbeauty@gmail.com';
+        const subject = encodeURIComponent(`Relatório Baumann — ${data.user.name} — ${new Date().toLocaleDateString('pt-BR')}`);
+        // incluir apenas campos essenciais no corpo (nome, email, data, respostas rastreadas e tipo)
+        const bodyObj = {
+          Nome: data.user.name,
+          Email: data.user.email,
+          Data_questionario: data.date,
+          Tipo_letras: data.finalTypeLetters,
+          Labels_EN: data.labelsEN,
+          Tracked: data.trackedDiagnostics,
+          Respostas_selecionadas: data.answers
         };
-
-        for(const key of ['O_S','S_R','P_N','E_F']){
-          const block = document.createElement('div');
-          block.className = 'score-row';
-          const left = document.createElement('div');
-          left.innerHTML = `<strong>${mapping[key]}</strong><div class="muted">${labelFromThreshold(key, final[key])}</div>`;
-          const right = document.createElement('div');
-          right.innerHTML = `<div><strong>${final[key].toFixed(2)}</strong></div>`;
-          block.appendChild(left);
-          block.appendChild(right);
-          scoresContainer.appendChild(block);
-        }
-
-        const finalType = `${final.O_S >= 27 ? 'O' : 'S'}${final.S_R >= 30 ? 'S' : 'R'}${final.P_N >= 31 ? 'P' : 'N'}${final.E_F >= 41 ? 'E' : 'F'}`;
-        const combined = document.createElement('div');
-        combined.style.marginTop = '12px';
-        combined.innerHTML = `<strong>Tipo de pele (com bônus aplicados):</strong> ${finalType}`;
-        scoresContainer.appendChild(combined);
-
-        // hide diag prompt after applying
-        diagPrompt.style.display = 'none';
+        const body = encodeURIComponent(JSON.stringify(bodyObj, null, 2));
+        window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
       });
 
-    })();
-  </script>
+      // download JSON
+      downloadBtn.addEventListener('click', ()=> {
+        const data = window.__baumann_report_json;
+        if(!data){ alert('Gere o relatório antes.'); return; }
+        const blob = new Blob([JSON.stringify(data,null,2)], {type:'application/json'});
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'baumann_report.json';
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        URL.revokeObjectURL(url);
+      });
+
+      // copiar json
+      copyJsonBtn.addEventListener('click', ()=> {
+        const data = window.__baumann_report_json;
+        if(!data){ alert('Gere o relatório antes.'); return; }
+        navigator.clipboard && navigator.clipboard.writeText(JSON.stringify(data,null,2));
+        alert('JSON copiado para área de transferência.');
+      });
+
+    })()
+/**
+ * Coleta respostas do Questionário 2 (área #questionnaire2)
+ * Retorna objeto estruturado
+ */
+function collectQ2Answers(){
+  const root = document.getElementById('questionnaire2');
+  if(!root) return null;
+  const out = {};
+
+  // checkboxes múltiplos (por name)
+  function collectCheckboxes(name){
+    const nodes = Array.from(root.querySelectorAll(`input[name="${name}"]`));
+    const checked = nodes.filter(n => n.checked).map(n => n.value);
+    return checked;
+  }
+
+  // radio single
+  function collectRadio(name){
+    const r = root.querySelector(`input[name="${name}"]:checked`);
+    return r ? r.value : null;
+  }
+
+  out.complaints = collectCheckboxes('q2_complaints');
+  out.poros = {
+    locations: collectCheckboxes('q2_poros_loc'),
+    severity: collectRadio('q2_poros_sev'),
+    texture: collectRadio('q2_poros_text'),
+    history: collectRadio('q2_poros_hist')
+  };
+
+  // rugas - testa
+  out.rugas = {
+    testa: {
+      has: collectRadio('q2_ruga_testa_has'),
+      qty: (root.querySelector('select[name="q2_ruga_testa_qty"]') || {}).value || null,
+      visibility: collectRadio('q2_ruga_testa_vis'),
+      depth: collectRadio('q2_ruga_testa_depth')
+    },
+    glabela: {
+      has: collectRadio('q2_ruga_glabela_has'),
+      qty: (root.querySelector('select[name="q2_ruga_glabela_qty"]') || {}).value || null,
+      visibility: collectRadio('q2_ruga_glabela_vis'),
+      depth: collectRadio('q2_ruga_glabela_depth')
+    },
+    pesdegalinha: {
+      has: collectRadio('q2_ruga_pes_has'),
+      qty: (root.querySelector('select[name="q2_ruga_pes_qty"]') || {}).value || null,
+      depth: collectRadio('q2_ruga_pes_depth')
+    },
+    sob_olhos: {
+      has: collectRadio('q2_ruga_sobolhos_has')
+    },
+    palpebra_sup: {
+      has: collectRadio('q2_ruga_palpebra')
+    },
+    bochechas: {
+      sulco: collectRadio('q2_ruga_bochecha_sulco'),
+      perda_firmeza: collectRadio('q2_ruga_bochecha_firmeza')
+    },
+    codigo_barras: {
+      has: collectRadio('q2_ruga_codigo')
+    },
+    bigode_chines: {
+      has: collectRadio('q2_ruga_naso')
+    },
+    marionete: {
+      has: collectRadio('q2_ruga_marionete')
+    },
+    pescoco: {
+      has: collectRadio('q2_pescoco')
+    }
+  };
+
+  out.cravos = {
+    location: collectRadio('q2_cravos_loc'),
+    location_spec: (root.querySelector('input[name="q2_cravos_loc_spec"]') || {}).value || null,
+    types: collectCheckboxes('q2_cravos_type'),
+    quantity: collectRadio('q2_cravos_qty'),
+    inflammation: collectRadio('q2_cravos_infl'),
+    oily: collectRadio('q2_cravos_oleo')
+  };
+
+  out.sardas = {
+    has: collectRadio('q2_sardas_has'),
+    locations: collectCheckboxes('q2_sardas_loc'),
+    quantity: collectRadio('q2_sardas_qty')
+  };
+
+  out.history_since = (root.querySelector('input[name="q2_history_since"]') || {}).value || null;
+  out.history_treat = (root.querySelector('input[name="q2_history_treat"]') || {}).value || null;
+  out.obs = (root.querySelector('input[name="q2_obs"]') || {}).value || null;
+
+  return out;
+}
+
+/**
+ * Mescla os dados do Q2 no JSON final e no relatório textual
+ */
+function mergeQ2IntoReport(reportObj, q2){
+  if(!q2) return reportObj;
+  reportObj.questionnaire2 = q2;
+
+  // append textual summary ao report (reportEl já recebe o buildReport text)
+  const addLines = [];
+  addLines.push('');
+  addLines.push('=== QUESTIONÁRIO 2 — Resumo das respostas ===');
+  addLines.push(`Queixas: ${ (q2.complaints && q2.complaints.length) ? q2.complaints.join(', ') : 'N/A' }`);
+  addLines.push(`Poros - localizações: ${ (q2.poros.locations && q2.poros.locations.length) ? q2.poros.locations.join(', ') : 'N/A' }`);
+  addLines.push(`Poros - severidade: ${ q2.poros.severity || 'N/A' }`);
+  addLines.push(`Poros - textura: ${ q2.poros.texture || 'N/A' }`);
+  addLines.push(`Poros - histórico: ${ q2.poros.history || 'N/A' }`);
+  addLines.push('Rugas (resumo por área):');
+  Object.keys(q2.rugas).forEach(k=>{
+    const r = q2.rugas[k];
+    addLines.push(` - ${k}: ${ JSON.stringify(r) }`);
+  });
+  addLines.push(`Cravos - localização: ${ q2.cravos.location || 'N/A' } (especificação: ${ q2.cravos.location_spec || 'N/A' })`);
+  addLines.push(`Cravos - tipo: ${ (q2.cravos.types && q2.cravos.types.length) ? q2.cravos.types.join(', ') : 'N/A' }`);
+  addLines.push(`Cravos - quantidade: ${ q2.cravos.quantity || 'N/A' }`);
+  addLines.push(`Cravos - inflamação: ${ q2.cravos.inflammation || 'N/A' }`);
+  addLines.push(`Cravos - oleosidade corporal: ${ q2.cravos.oily || 'N/A' }`);
+  addLines.push(`Sardas - presença: ${ q2.sardas.has || 'N/A' } / locais: ${ (q2.sardas.locations && q2.sardas.locations.length) ? q2.sardas.locations.join(', ') : 'N/A' }`);
+  addLines.push(`Histórico: ${ q2.history_since || 'N/A' }`);
+  addLines.push(`Tratamentos anteriores: ${ q2.history_treat || 'N/A' }`);
+  addLines.push(`Observações: ${ q2.obs || 'N/A' }`);
+  addLines.push('');
+
+  // retorna texto a ser anexado ao report
+  return addLines.join('\n');
+}
+
+// ---- substituir o handler atual do calcBtn pelo abaixo ----
+calcBtn.removeEventListener && calcBtn.removeEventListener('click', () => {});
+calcBtn.addEventListener('click', function(){
+  // validação de dados obrigatórios
+  const name = document.getElementById('userName').value.trim();
+  const email = document.getElementById('userEmail').value.trim();
+  if(!name || !email){
+    alert('Preencha Nome e E-mail antes de calcular.');
+    return;
+  }
+
+  // respostas originais (já existente)
+  const answers = collectAnswers(); // função original que retorna array de fieldset answers
+  const scores = sumByPart(answers);
+  const needsDiag = detectDiagnosis(answers); // mantém lógica existente
+  const classification = classify(scores);
+  const baseReportText = buildReport({name, email}, answers, scores, classification);
+  const baseJSON = buildReportJSON({name, email}, answers, scores, classification);
+
+  // coletar Q2 e mesclar
+  const q2 = collectQ2Answers();
+  const q2Text = mergeQ2IntoReport(baseJSON, q2); // retorna texto resumido para anexar
+  // anexar texto de Q2 ao report textual mostrado
+  reportEl.textContent = baseReportText + '\n' + (q2Text || '');
+
+  // incluir Q2 no JSON final
+  baseJSON.questionnaire2 = q2;
+  window.__baumann_report_json = baseJSON;
+
+  // atualizar UI (scoresArea e typeStringEl já atualizados anteriormente pelo fluxo original; repetir para garantir)
+  scoresArea.innerHTML = '';
+  Object.entries(scores).forEach(([k,v])=>{
+    const row = document.createElement('div');
+    row.className = 'scoreRow';
+    const left = document.createElement('div');
+    left.innerHTML = `<strong>${k.replace('_',' / ')}</strong><div class="muted">${k === 'O_S' ? (v>=27? 'Pele oleosa':'Pele seca') : (k==='S_R'? (v>=30? 'Pele sensível':'Pele resistente') : (k==='P_N' ? (v>=31? 'Pigmentada':'Não pigmentada') : (v>=41? 'Enrugada':'Firme')) )}</div>`;
+    const right = document.createElement('div');
+    right.innerHTML = `<strong>${v.toFixed(2)}</strong>`;
+    row.appendChild(left);
+    row.appendChild(right);
+    scoresArea.appendChild(row);
+  });
+
+  typeStringEl.textContent = `${classification.letters} — ${classification.labels.O_S_label}, ${classification.labels.S_R_label}, ${classification.labels.P_N_label}, ${classification.labels.E_F_label}`;
+
+  // exibir bloco de resultados sem scroll automático
+  resultsWrap.style.display = 'block';
+});
+
+<script>
+document.getElementById('calcBtn').addEventListener('click', function() {
+    const form = document.getElementById('quizForm');
+    const userName = form.elements['userName'].value.trim();
+    const userEmail = form.elements['userEmail'].value.trim();
+    if (!userName || !userEmail) {
+        alert('Preencha nome e e-mail antes de continuar.');
+        return;
+    }
+
+    const results = [];
+    const sections = ['p0', 'p1', 'p2', 'p3'];
+    const codes = ['SR', 'SN', 'PF', 'WR']; // Exemplo, ajustar conforme Baumann
+    const englishCodes = ['Sensitive/Resistant', 'Oily/Dry', 'Pigmented/Non-pigmented', 'Wrinkled/Firm'];
+
+    sections.forEach((sec, idx) => {
+        let sum = 0;
+        let trace = [];
+        for (let i = 0; i < 20; i++) { // Ajustar qtd de questões por seção
+            const qName = `${sec}q${i}`;
+            const el = form.elements[qName];
+            if (el) {
+                let val = 0;
+                if (el.type === 'radio') {
+                    const checked = form.querySelector(`input[name="${qName}"]:checked`);
+                    val = checked ? parseFloat(checked.value) : 0;
+                } else if (el.type === 'checkbox') {
+                    val = el.checked ? parseFloat(el.value) : 0;
+                }
+                sum += val;
+                trace.push(val);
+            }
+        }
+        results.push({section: sec, sum: sum, trace: trace, code: codes[idx], codeEng: englishCodes[idx]});
+    });
+
+    // Criar container de resultado
+    let container = document.querySelector('.result');
+    if (!container) {
+        container = document.createElement('div');
+        container.className = 'result';
+        form.appendChild(container);
+    }
+    container.innerHTML = `<h3>Resultados</h3>`;
+    results.forEach(r => {
+        const div = document.createElement('div');
+        div.style.border = '1px solid #d1d5db';
+        div.style.padding = '8px';
+        div.style.marginBottom = '8px';
+        div.innerHTML = `<strong>${r.code} (${r.codeEng})</strong><br>Soma: ${r.sum}<br>Rastreamento: [${r.trace.join(', ')}]`;
+        container.appendChild(div);
+    });
+
+    // Enviar e-mail
+    const dataToSend = {
+        name: userName,
+        email: userEmail,
+        date: new Date().toLocaleString(),
+        results: results
+    };
+
+    fetch('https://formspree.io/f/xpzbqgwl', { // exemplo Formspree, substituir pelo seu endpoint
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(dataToSend)
+    }).then(res => {
+        if (res.ok) alert('Resultados enviados com sucesso!');
+        else alert('Erro ao enviar os resultados.');
+    }).catch(err => console.error(err));
+});
+</script>
+
+
+  
 </body>
 </html>
+
