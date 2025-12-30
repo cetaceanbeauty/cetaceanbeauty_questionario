@@ -1,0 +1,880 @@
+import React, { useEffect, useState } from 'react';
+import { ChevronRight, ChevronLeft, CheckCircle } from 'lucide-react';
+
+// parts: manter fora do componente para não recriar em cada render
+const parts = [
+  {
+    title: 'PARTE UM',
+    subtitle: 'OLEOSA VS. SECA',
+    description:
+      'Esta seção mede a produção de óleo e hidratação da pele. Estudos mostram que as preconcepções das pessoas sobre se sua pele é oleosa ou seca são frequentemente imprecisas.',
+    color: '#5CB85C',
+    questions: [
+      {
+        q: 'Após lavar o rosto, não aplique produtos. 2-3 horas depois, sob luz forte, sua testa e bochechas estão:',
+        options: [
+          { text: 'Muito ásperas, descamando ou acinzentadas', value: 1 },
+          { text: 'Repuxadas', value: 2 },
+          { text: 'Bem hidratadas sem reflexo de luz', value: 3 },
+          { text: 'Brilhantes com reflexo de luz forte', value: 4 }
+        ]
+      },
+      {
+        q: 'Em fotos, seu rosto aparece brilhante:',
+        options: [
+          { text: 'Nunca, ou você nunca notou brilho', value: 1 },
+          { text: 'Às vezes', value: 2 },
+          { text: 'Frequentemente', value: 3 },
+          { text: 'Sempre', value: 4 }
+        ]
+      },
+      {
+        q: '2-3 horas após aplicar base (sem pó), sua maquiagem fica:',
+        options: [
+          { text: 'Descamando ou acumulada nas rugas', value: 1 },
+          { text: 'Lisa', value: 2 },
+          { text: 'Brilhante', value: 3 },
+          { text: 'Borrada e brilhante', value: 4 },
+          { text: 'Não uso base facial', value: 2.5 }
+        ]
+      },
+      {
+        q: 'Em ambiente com baixa umidade, sem hidratante ou protetor, sua pele facial:',
+        options: [
+          { text: 'Fica muito seca ou racha', value: 1 },
+          { text: 'Fica repuxada', value: 2 },
+          { text: 'Fica normal', value: 3 },
+          { text: 'Fica brilhante, ou nunca sinto que preciso de hidratante', value: 4 },
+          { text: 'Não sei', value: 2.5 }
+        ]
+      },
+      {
+        q: 'Olhe no espelho de aumento. Quantos poros grandes (tamanho da ponta de um alfinete ou maior) você tem?',
+        options: [
+          { text: 'Nenhum', value: 1 },
+          { text: 'Alguns apenas na zona T (testa e nariz)', value: 2 },
+          { text: 'Muitos', value: 3 },
+          { text: 'Toneladas!', value: 4 },
+          { text: 'Não sei (só responda se realmente não conseguir determinar)', value: 2.5 }
+        ]
+      },
+      {
+        q: 'Você caracterizaria sua pele facial como:',
+        options: [
+          { text: 'Seca', value: 1 },
+          { text: 'Normal', value: 2 },
+          { text: 'Mista', value: 3 },
+          { text: 'Oleosa', value: 4 }
+        ]
+      },
+      {
+        q: 'Quando usa sabonete que faz bastante espuma, sua pele facial:',
+        options: [
+          { text: 'Fica seca ou racha', value: 1 },
+          { text: 'Fica levemente seca mas não racha', value: 2 },
+          { text: 'Fica normal', value: 3 },
+          { text: 'Fica oleosa', value: 4 },
+          {
+            text: 'Não uso sabonete com espuma (se é porque eles deixam sua pele seca, escolha a primeira)',
+            value: 2.5
+          }
+        ]
+      },
+      {
+        q: 'Se não hidratada, sua pele facial fica repuxada:',
+        options: [
+          { text: 'Sempre', value: 1 },
+          { text: 'Às vezes', value: 2 },
+          { text: 'Raramente', value: 3 },
+          { text: 'Nunca', value: 4 }
+        ]
+      },
+      {
+        q: 'Você tem poros entupidos (cravos pretos ou brancos):',
+        options: [
+          { text: 'Nunca', value: 1 },
+          { text: 'Raramente', value: 2 },
+          { text: 'Às vezes', value: 3 },
+          { text: 'Sempre', value: 4 }
+        ]
+      },
+      {
+        q: 'Seu rosto fica oleoso na zona T (testa e nariz):',
+        options: [
+          { text: 'Nunca', value: 1 },
+          { text: 'Às vezes', value: 2 },
+          { text: 'Frequentemente', value: 3 },
+          { text: 'Sempre', value: 4 }
+        ]
+      },
+      {
+        q: '2-3 horas após aplicar hidratante, suas bochechas estão:',
+        options: [
+          { text: 'Muito ásperas, descamando ou acinzentadas', value: 1 },
+          { text: 'Lisas', value: 2 },
+          { text: 'Levemente brilhantes', value: 3 },
+          { text: 'Brilhantes e escorregadias, ou não uso hidratante', value: 4 }
+        ]
+      }
+    ]
+  },
+
+  {
+    title: 'PARTE DOIS',
+    subtitle: 'SENSÍVEL VS. RESISTENTE',
+    description:
+      'Esta seção mede a tendência da sua pele de desenvolver espinhas, vermelhidão, rubor e coceira, todos sinais de pele sensível.',
+    color: '#2E86AB',
+    questions: [
+      {
+        q: 'Você tem espinhas vermelhas no rosto:',
+        options: [
+          { text: 'Nunca', value: 1 },
+          { text: 'Raramente', value: 2 },
+          { text: 'Pelo menos uma vez por mês', value: 3 },
+          { text: 'Pelo menos uma vez por semana', value: 4 }
+        ]
+      },
+      {
+        q: 'Produtos de cuidados com a pele (limpadores, hidratantes, tônicos, maquiagem) provocam espinhas, erupção, coceira ou ardência:',
+        options: [
+          { text: 'Nunca', value: 1 },
+          { text: 'Raramente', value: 2 },
+          { text: 'Frequentemente', value: 3 },
+          { text: 'Sempre', value: 4 },
+          { text: 'Não uso produtos no rosto', value: 2.5 }
+        ]
+      },
+      {
+        q: 'Você já foi diagnosticado(a) com acne ou rosácea?',
+        options: [
+          { text: 'Não', value: 1 },
+          { text: 'Amigos e conhecidos me dizem que tenho', value: 2 },
+          { text: 'Sim', value: 3 },
+          { text: 'Sim, um caso grave', value: 4 },
+          { text: 'Não tenho certeza', value: 2.5 }
+        ],
+        trackDiagnosis: true
+      },
+      {
+        q: 'Se você usa joias que não são ouro 14 quilates, com que frequência tem erupção cutânea?',
+        options: [
+          { text: 'Nunca', value: 1 },
+          { text: 'Raramente', value: 2 },
+          { text: 'Frequentemente', value: 3 },
+          { text: 'Sempre', value: 4 },
+          { text: 'Não tenho certeza', value: 2.5 }
+        ]
+      },
+      {
+        q: 'Protetores solares fazem sua pele coçar, arder, ter espinhas ou ficar vermelha:',
+        options: [
+          { text: 'Nunca', value: 1 },
+          { text: 'Raramente', value: 2 },
+          { text: 'Frequentemente', value: 3 },
+          { text: 'Sempre', value: 4 },
+          { text: 'Nunca uso protetor solar', value: 2.5 }
+        ]
+      },
+      {
+        q: 'Você já foi diagnosticado(a) com dermatite atópica, eczema ou dermatite de contato?',
+        options: [
+          { text: 'Não', value: 1 },
+          { text: 'Amigos me dizem que tenho', value: 2 },
+          { text: 'Sim', value: 3 },
+          { text: 'Sim, um caso grave', value: 4 },
+          { text: 'Não tenho certeza', value: 2.5 }
+        ],
+        trackDiagnosis: true
+      },
+      {
+        q: 'Com que frequência você tem erupção cutânea embaixo dos seus anéis?',
+        options: [
+          { text: 'Nunca', value: 1 },
+          { text: 'Raramente', value: 2 },
+          { text: 'Frequentemente', value: 3 },
+          { text: 'Sempre', value: 4 },
+          { text: 'Não uso anéis', value: 2.5 }
+        ]
+      },
+      {
+        q: 'Banho de espuma perfumado, óleo de massagem ou loções corporais provocam espinhas, coceira ou ressecamento:',
+        options: [
+          { text: 'Nunca', value: 1 },
+          { text: 'Raramente', value: 2 },
+          { text: 'Frequentemente', value: 3 },
+          { text: 'Sempre', value: 4 },
+          { text: "Nunca uso esses produtos (responda 'Sempre' se não usa porque causam problemas)", value: 2.5 }
+        ]
+      },
+      {
+        q: 'Você consegue usar o sabonete de hotéis no corpo ou rosto sem problema?',
+        options: [
+          { text: 'Sim', value: 1 },
+          { text: 'Na maioria das vezes, não tenho problema', value: 2 },
+          { text: 'Não, minha pele coça, fica vermelha ou tem espinhas', value: 3 },
+          { text: 'Não usaria. Tive muitos problemas no passado!', value: 4 },
+          { text: 'Levo o meu próprio, então não tenho certeza', value: 2.5 }
+        ]
+      },
+      {
+        q: 'Alguém na sua família foi diagnosticado com dermatite atópica, eczema, asma e/ou alergias?',
+        options: [
+          { text: 'Não', value: 1 },
+          { text: 'Um membro da família que eu saiba', value: 2 },
+          { text: 'Vários membros da família', value: 3 },
+          { text: 'Muitos dos meus familiares', value: 4 },
+          { text: 'Não tenho certeza', value: 2.5 }
+        ]
+      },
+      {
+        q: 'O que acontece se você usa detergentes perfumados ou folhas antiestáticas na secadora?',
+        options: [
+          { text: 'Minha pele fica bem', value: 1 },
+          { text: 'Minha pele fica levemente seca', value: 2 },
+          { text: 'Minha pele coça', value: 3 },
+          { text: 'Minha pele coça e fica com erupção', value: 4 },
+          { text: 'Não tenho certeza, ou nunca usei', value: 2.5 }
+        ]
+      },
+      {
+        q: 'Com que frequência seu rosto/pescoço ficam vermelhos após exercício moderado, estresse ou emoção forte?',
+        options: [
+          { text: 'Nunca', value: 1 },
+          { text: 'Às vezes', value: 2 },
+          { text: 'Frequentemente', value: 3 },
+          { text: 'Sempre', value: 4 }
+        ]
+      },
+      {
+        q: 'Com que frequência você fica vermelho(a) e corado(a) depois de beber álcool?',
+        options: [
+          { text: 'Nunca', value: 1 },
+          { text: 'Às vezes', value: 2 },
+          { text: 'Frequentemente', value: 3 },
+          { text: 'Sempre, ou não bebo por causa deste problema', value: 4 },
+          { text: 'Nunca bebo álcool', value: 2.5 }
+        ]
+      },
+      {
+        q: 'Com que frequência você fica vermelho(a) após comer alimentos ou bebidas apimentados ou quentes?',
+        options: [
+          { text: 'Nunca', value: 1 },
+          { text: 'Às vezes', value: 2 },
+          { text: 'Frequentemente', value: 3 },
+          { text: 'Sempre', value: 4 },
+          { text: "Nunca como comida apimentada (se não come por causa do rubor, escolha 'Sempre')", value: 2.5 }
+        ]
+      },
+      {
+        q: 'Quantos vasos sanguíneos quebrados visíveis (vermelhos ou azuis) você tem no rosto e nariz?',
+        options: [
+          { text: 'Nenhum', value: 1 },
+          { text: 'Poucos (um a três em todo o rosto)', value: 2 },
+          { text: 'Alguns (quatro a seis em todo o rosto)', value: 3 },
+          { text: 'Muitos (mais de sete em todo o rosto)', value: 4 }
+        ]
+      },
+      {
+        q: 'Seu rosto aparece vermelho em fotografias:',
+        options: [
+          { text: 'Nunca, ou nunca notei', value: 1 },
+          { text: 'Às vezes', value: 2 },
+          { text: 'Frequentemente', value: 3 },
+          { text: 'Sempre', value: 4 }
+        ]
+      },
+      {
+        q: 'As pessoas perguntam se você está queimado(a) de sol, mesmo quando não está:',
+        options: [
+          { text: 'Nunca', value: 1 },
+          { text: 'Às vezes', value: 2 },
+          { text: 'Frequentemente', value: 3 },
+          { text: 'Sempre', value: 4 },
+          { text: 'Sempre estou queimado(a) de sol', value: 2.5 }
+        ]
+      },
+      {
+        q: 'Você tem vermelhidão, coceira ou inchaço causados por maquiagem, protetor solar ou produtos de skincare:',
+        options: [
+          { text: 'Nunca', value: 1 },
+          { text: 'Às vezes', value: 2 },
+          { text: 'Frequentemente', value: 3 },
+          { text: 'Sempre', value: 4 },
+          { text: "Não uso esses produtos (responda 'Sempre' se não usa por causa desses sintomas)", value: 2.5 }
+        ]
+      }
+    ]
+  },
+
+  {
+    title: 'PARTE TRÊS',
+    subtitle: 'PIGMENTADA VS. NÃO PIGMENTADA',
+    description:
+      'Esta seção mede a tendência da sua pele de formar melanina, produzindo tons mais escuros, manchas, sardas e áreas escuras após trauma.',
+    color: '#4ECDC4',
+    questions: [
+      {
+        q: 'Depois de ter uma espinha ou pelo encravado, aparece uma mancha marrom/preta escura:',
+        options: [
+          { text: 'Nunca ou não notei', value: 1 },
+          { text: 'Às vezes', value: 2 },
+          { text: 'Frequentemente', value: 3 },
+          { text: 'Sempre', value: 4 },
+          { text: 'Nunca tenho espinhas ou pelos encravados', value: 2.5 }
+        ]
+      },
+      {
+        q: 'Depois de se cortar, por quanto tempo a marca marrom (não rosa) permanece?',
+        options: [
+          { text: 'Não fico com marca marrom ou não notei', value: 1 },
+          { text: 'Uma semana', value: 2 },
+          { text: 'Algumas semanas', value: 3 },
+          { text: 'Meses', value: 4 }
+        ]
+      },
+      {
+        q: 'Quantas manchas escuras você desenvolveu no rosto durante gravidez, uso de pílula anticoncepcional ou terapia hormonal?',
+        options: [
+          { text: 'Nenhuma', value: 1 },
+          { text: 'Uma', value: 2 },
+          { text: 'Algumas', value: 3 },
+          { text: 'Muitas', value: 4 },
+          { text: 'Não se aplica a mim', value: 2.5 }
+        ]
+      },
+      {
+        q: 'Você tem manchas escuras no lábio superior ou bochechas? Ou já teve e removeu?',
+        options: [
+          { text: 'Não', value: 1 },
+          { text: 'Não tenho certeza', value: 2 },
+          { text: 'Sim, levemente perceptíveis', value: 3 },
+          { text: 'Sim, muito perceptíveis', value: 4 }
+        ]
+      },
+      {
+        q: 'As manchas escuras no seu rosto pioram quando você vai ao sol?',
+        options: [
+          { text: 'Não tenho manchas escuras', value: 1 },
+          { text: 'Não tenho certeza', value: 2 },
+          { text: 'Pioram levemente', value: 3 },
+          { text: 'Pioram muito', value: 4 },
+          { text: 'Uso protetor todos os dias e nunca tomo sol (se usa proteção constante por medo de manchas, escolha \"Pioram muito\")', value: 2.5 }
+        ]
+      },
+      {
+        q: 'Você foi diagnosticado(a) com melasma (manchas marrons ou cinza no rosto)?',
+        options: [
+          { text: 'Não', value: 1 },
+          { text: 'Sim, mas passou', value: 2 },
+          { text: 'Sim, e tenho agora', value: 3 },
+          { text: 'Sim, tenho um caso grave agora', value: 4 },
+          { text: 'Não tenho certeza', value: 2.5 }
+        ]
+      },
+      {
+        q: 'Você tem ou já teve pequenas manchas marrons (sardas ou manchas solares) no rosto, peito, costas ou braços?',
+        options: [
+          { text: 'Não', value: 1 },
+          { text: 'Sim, algumas (uma a cinco)', value: 2 },
+          { text: 'Sim, muitas (seis a quinze)', value: 3 },
+          { text: 'Sim, toneladas (dezesseis ou mais)', value: 4 }
+        ]
+      },
+      {
+        q: 'Quando exposto ao sol pela primeira vez em vários meses, sua pele:',
+        options: [
+          { text: 'Apenas queima', value: 1 },
+          { text: 'Queima, depois escurece', value: 2 },
+          { text: 'Escurece', value: 3 },
+          { text: 'Já é escura, difícil ver se escurece (pense em experiências da infância!)', value: 4 }
+        ]
+      },
+      {
+        q: 'Após muitos dias de exposição solar consecutiva:',
+        options: [
+          { text: 'Queimo e fico com bolhas, mas minha pele não muda de cor', value: 1 },
+          { text: 'Minha pele fica levemente mais escura', value: 2 },
+          { text: 'Minha pele fica muito mais escura', value: 3 },
+          { text: 'Já é escura, difícil ver se escurece', value: 4 },
+          { text: 'Não tenho certeza (considere experiências da infância!)', value: 2.5 }
+        ]
+      },
+      {
+        q: 'Qual é a cor natural do seu cabelo? (Se grisalho, informe a cor antes de ficar grisalho)',
+        options: [
+          { text: 'Loiro', value: 1 },
+          { text: 'Castanho', value: 2 },
+          { text: 'Preto', value: 3 },
+          { text: 'Ruivo', value: 4 }
+        ]
+      }
+    ]
+  },
+
+  {
+    title: 'PARTE QUATRO',
+    subtitle: 'ENRUGADA VS. FIRME',
+    description:
+      'Esta seção mede sua tendência a ter rugas e o quanto você está enrugado(a) agora. Seja honesto(a) - mudar seus hábitos agora pode mudar seu resultado no futuro!',
+    color: '#2E86AB',
+    questions: [
+      {
+        q: 'Você tem rugas faciais?',
+        options: [
+          { text: 'Não, nem mesmo ao sorrir, franzir ou levantar sobrancelhas', value: 1 },
+          { text: 'Apenas quando me movimento (sorrir, franzir, levantar sobrancelhas)', value: 2 },
+          { text: 'Sim, com movimento e algumas em repouso', value: 3 },
+          { text: 'Rugas presentes mesmo sem movimento', value: 4 }
+        ]
+      },
+      {
+        q: 'Qual a aparência da idade da pele facial da sua mãe?',
+        options: [
+          { text: '5-10 anos mais jovem que sua idade', value: 1 },
+          { text: 'Sua idade', value: 2 },
+          { text: '5 anos mais velha que sua idade', value: 3 },
+          { text: 'Mais de 5 anos mais velha', value: 4 },
+          { text: 'Não se aplica (adotado/não consigo lembrar)', value: 2.5 }
+        ]
+      },
+      {
+        q: 'Qual a aparência da idade da pele facial do seu pai?',
+        options: [
+          { text: '5-10 anos mais jovem que sua idade', value: 1 },
+          { text: 'Sua idade', value: 2 },
+          { text: '5 anos mais velha que sua idade', value: 3 },
+          { text: 'Mais de 5 anos mais velha', value: 4 },
+          { text: 'Não se aplica (adotado/não consigo lembrar)', value: 2.5 }
+        ]
+      },
+      {
+        q: 'Qual a aparência da idade da pele facial da sua avó materna?',
+        options: [
+          { text: '5-10 anos mais jovem que sua idade', value: 1 },
+          { text: 'Sua idade', value: 2 },
+          { text: '5 anos mais velha que sua idade', value: 3 },
+          { text: 'Mais de 5 anos mais velha', value: 4 },
+          { text: 'Não se aplica (adotado/nunca conheci/não lembro)', value: 2.5 }
+        ]
+      },
+      {
+        q: 'Qual a aparência da idade da pele facial do seu avô materno?',
+        options: [
+          { text: '5-10 anos mais jovem que sua idade', value: 1 },
+          { text: 'Sua idade', value: 2 },
+          { text: '5 anos mais velha que sua idade', value: 3 },
+          { text: 'Mais de 5 anos mais velha', value: 4 },
+          { text: 'Não se aplica (adotado/nunca conheci/não lembro)', value: 2.5 }
+        ]
+      },
+      {
+        q: 'Qual a aparência da idade da pele facial da sua avó paterna?',
+        options: [
+          { text: '5-10 anos mais jovem que sua idade', value: 1 },
+          { text: 'Sua idade', value: 2 },
+          { text: '5 anos mais velha que sua idade', value: 3 },
+          { text: 'Mais de 5 anos mais velha', value: 4 },
+          { text: 'Não se aplica (adotado/nunca conheci/não lembro)', value: 2.5 }
+        ]
+      },
+      {
+        q: 'Qual a aparência da idade da pele facial do seu avô paterno?',
+        options: [
+          { text: '5-10 anos mais jovem que sua idade', value: 1 },
+          { text: 'Sua idade', value: 2 },
+          { text: '5 anos mais velha que sua idade', value: 3 },
+          { text: 'Mais de 5 anos mais velha', value: 4 },
+          { text: 'Não se aplica (adotado/nunca conheci/não lembro)', value: 2.5 }
+        ]
+      },
+      {
+        q: 'Você já bronzeou a pele continuamente por mais de 2 semanas/ano? Por quantos anos total? (Conte tênis, pesca, golfe, esqui, atividades ao ar livre)',
+        options: [
+          { text: 'Nunca', value: 1 },
+          { text: '1-5 anos', value: 2 },
+          { text: '5-10 anos', value: 3 },
+          { text: 'Mais de 10 anos', value: 4 }
+        ]
+      },
+      {
+        q: 'Você já teve bronzeamento sazonal de 2 semanas/ano ou menos? (Sim, férias de verão contam!) Com que frequência?',
+        options: [
+          { text: 'Nunca', value: 1 },
+          { text: '1-5 anos', value: 2 },
+          { text: '5-10 anos', value: 3 },
+          { text: 'Mais de 10 anos', value: 4 }
+        ]
+      },
+      {
+        q: 'Baseado nos lugares onde morou, quanta exposição solar diária você recebeu na vida?',
+        options: [
+          { text: 'Pouca; morei em lugares cinzentos e nublados', value: 1 },
+          { text: 'Alguma; climas variados', value: 2 },
+          { text: 'Moderada; lugares com bastante sol', value: 3 },
+          { text: 'Muita; locais tropicais, do Sul ou muito ensolarados', value: 4 }
+        ]
+      },
+      {
+        q: 'Quantos anos você acha que parece ter?',
+        options: [
+          { text: '1-5 anos mais jovem que minha idade', value: 1 },
+          { text: 'Minha idade', value: 2 },
+          { text: '5 anos mais velha que minha idade', value: 3 },
+          { text: 'Mais de 5 anos mais velha', value: 4 }
+        ]
+      },
+      {
+        q: 'Nos últimos 5 anos, com que frequência permitiu que sua pele bronzeasse (intencional ou não) em atividades ao ar livre?',
+        options: [
+          { text: 'Nunca', value: 1 },
+          { text: 'Uma vez por mês', value: 2 },
+          { text: 'Uma vez por semana', value: 3 },
+          { text: 'Diariamente', value: 4 }
+        ]
+      },
+      {
+        q: 'Com que frequência você foi a uma cabine de bronzeamento?',
+        options: [
+          { text: 'Nunca', value: 1 },
+          { text: '1-5 vezes', value: 2 },
+          { text: '5-10 vezes', value: 3 },
+          { text: 'Muitas vezes', value: 4 }
+        ]
+      },
+      {
+        q: 'Ao longo da vida, quantos cigarros você fumou ou foi exposto?',
+        options: [
+          { text: 'Nenhum', value: 1 },
+          { text: 'Alguns maços', value: 2 },
+          { text: 'Vários a muitos maços', value: 3 },
+          { text: 'Fumo todos os dias', value: 4 },
+          { text: 'Nunca fumei mas convivi com fumantes regularmente', value: 2.5 }
+        ]
+      },
+      {
+        q: 'Descreva a poluição do ar onde você reside:',
+        options: [
+          { text: 'Ar fresco e limpo', value: 1 },
+          { text: 'Parte do ano tenho ar limpo', value: 2 },
+          { text: 'Ar levemente poluído', value: 3 },
+          { text: 'Ar muito poluído', value: 4 }
+        ]
+      },
+      {
+        q: 'Por quanto tempo você usou cremes faciais com retinoides (retinol, Renova, Retin-A, Tazorac, Differin ou Avage)?',
+        options: [
+          { text: 'Muitos anos', value: 1 },
+          { text: 'Ocasionalmente', value: 2 },
+          { text: 'Uma vez para acne quando era mais jovem', value: 3 },
+          { text: 'Nunca', value: 4 }
+        ]
+      },
+      {
+        q: 'Com que frequência você come frutas e vegetais atualmente?',
+        options: [
+          { text: 'Em todas as refeições', value: 1 },
+          { text: 'Uma vez por dia', value: 2 },
+          { text: 'Ocasionalmente', value: 3 },
+          { text: 'Nunca', value: 4 }
+        ]
+      },
+      {
+        q: 'Ao longo da sua vida, qual porcentagem da sua dieta diária consistiu em frutas e vegetais? (Não conte sucos, a menos que sejam recém-espremidos.)',
+        options: [
+          { text: '75–100%', value: 1 },
+          { text: '25–75%', value: 2 },
+          { text: '10–25%', value: 3 },
+          { text: '0–10%', value: 4 }
+        ]
+      },
+      {
+        q: 'Qual é a cor natural da sua pele (sem bronzeamento ou autobronzeadores)?',
+        options: [
+          { text: 'Escura', value: 1 },
+          { text: 'Média', value: 2 },
+          { text: 'Clara', value: 3 },
+          { text: 'Muito clara', value: 4 }
+        ]
+      },
+      {
+        q: 'Qual é a sua etnia? (Escolha a melhor resposta.)',
+        options: [
+          { text: 'Afro-americano/Caribenho/Negro', value: 1 },
+          { text: 'Asiático/Indiano/Mediterrâneo/Outro', value: 2 },
+          { text: 'Latino-americano/Hispânico', value: 3 },
+          { text: 'Caucasiano', value: 4 }
+        ]
+      },
+      {
+        q: 'Se você tem 65 anos ou mais, adicione 5 pontos à sua pontuação.',
+        options: [
+          { text: 'Sim', value: 1 },
+          { text: 'Não', value: 0 }
+        ]
+      },
+      {
+        q: 'Pontuação E vs. F:',
+        description: 'Dê 1 ponto para cada resposta a, 2 pontos para cada b, 3 pontos para cada c, 4 pontos para cada d e 2,5 pontos para cada resposta e.'
+      }
+    ]
+  }
+];
+
+// utilitário de cálculo de pontuação
+const calculateScores = (partsArr, answersObj, diagnosisBonus = 0, age65Bonus = false) => {
+  const mapping = ['O_S', 'S_R', 'P_N', 'E_F'];
+  const result = {};
+
+  partsArr.forEach((part, pIdx) => {
+    const key = mapping[pIdx] || `part${pIdx}`;
+    const partAnswers = answersObj[pIdx] || {};
+
+    // calcular min/max com base nas opções de cada pergunta
+    let sum = 0;
+    let min = 0;
+    let max = 0;
+
+    part.questions.forEach((q, qIdx) => {
+      const optionValues = q.options ? q.options.map(o => Number(o.value)) : [];
+      if (optionValues.length === 0) return;
+      const qMin = Math.min(...optionValues);
+      const qMax = Math.max(...optionValues);
+      min += qMin;
+      max += qMax;
+
+      const given = partAnswers[qIdx];
+      if (given !== undefined && given !== null && given !== '') {
+        sum += Number(given);
+      }
+    });
+
+    // aplicar bônus diagnóstico somente para a parte 2 (S_R) se houver seleção relevante
+    if (pIdx === 1 && diagnosisBonus) {
+      sum += diagnosisBonus;
+    }
+
+    // aplicar bônus idade 65+ somente na parte 4
+    if (pIdx === 3 && age65Bonus) {
+      sum += 5;
+    }
+
+    result[key] = { score: sum, min, max };
+  });
+
+  return result;
+};
+
+const STORAGE_KEY = 'baumann_quiz_v1';
+
+export default function BaumannQuiz() {
+  const [currentPart, setCurrentPart] = useState(0);
+  const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [answers, setAnswers] = useState({}); // { partIdx: { questionIdx: value } }
+  const [showResult, setShowResult] = useState(false);
+  const [diagnosisBonus, setDiagnosisBonus] = useState(0); // 0 | 2 | 5
+  const [age65Bonus, setAge65Bonus] = useState(false);
+
+  // carregar estado do localStorage
+  useEffect(() => {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (raw) {
+        const parsed = JSON.parse(raw);
+        if (parsed.answers) setAnswers(parsed.answers);
+        if (typeof parsed.currentPart === 'number') setCurrentPart(parsed.currentPart);
+        if (typeof parsed.currentQuestion === 'number') setCurrentQuestion(parsed.currentQuestion);
+      }
+    } catch (e) {
+      // ignore
+    }
+  }, []);
+
+  // salvar alterações no storage
+  useEffect(() => {
+    const payload = { answers, currentPart, currentQuestion };
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
+    } catch (e) {
+      // ignore
+    }
+  }, [answers, currentPart, currentQuestion]);
+
+  const handleSelect = (pIdx, qIdx, value) => {
+    setAnswers(prev => {
+      const next = { ...prev };
+      next[pIdx] = { ...(next[pIdx] || {}), [qIdx]: Number(value) };
+      return next;
+    });
+  };
+
+  const nextQuestion = () => {
+    const totalQuestions = parts[currentPart].questions.length;
+    if (currentQuestion < totalQuestions - 1) {
+      setCurrentQuestion(q => q + 1);
+      return;
+    }
+    if (currentPart < parts.length - 1) {
+      setCurrentPart(p => p + 1);
+      setCurrentQuestion(0);
+      return;
+    }
+    setShowResult(true);
+  };
+
+  const prevQuestion = () => {
+    if (currentQuestion > 0) {
+      setCurrentQuestion(q => q - 1);
+      return;
+    }
+    if (currentPart > 0) {
+      const newPart = currentPart - 1;
+      setCurrentPart(newPart);
+      setCurrentQuestion(parts[newPart].questions.length - 1);
+    }
+  };
+
+  const clearResponses = () => {
+    setAnswers({});
+    setCurrentPart(0);
+    setCurrentQuestion(0);
+    setShowResult(false);
+    setDiagnosisBonus(0);
+    setAge65Bonus(false);
+    try { localStorage.removeItem(STORAGE_KEY); } catch (e) {}
+  };
+
+  // detectar se há alguma pergunta com trackDiagnosis marcada com valor >=3
+  const requiresDiagnosisChoice = () => {
+    const partIdx = 1; // parte dois
+    const partAnswers = answers[partIdx] || {};
+    return parts[partIdx].questions.some((q, qIdx) => q.trackDiagnosis && Number(partAnswers[qIdx]) >= 3);
+  };
+
+  const renderQuestion = (partIdx, qIdx) => {
+    const question = parts[partIdx].questions[qIdx];
+    const selected = (answers[partIdx] || {})[qIdx];
+
+    return (
+      <fieldset className="mb-4" key={`p${partIdx}q${qIdx}`}>
+        <legend className="font-semibold mb-2">{question.q}</legend>
+        {question.description && <p className="text-sm mb-2">{question.description}</p>}
+
+        <div role="radiogroup" aria-labelledby={`p${partIdx}q${qIdx}`}> 
+          {question.options && question.options.map((opt, oIdx) => {
+            const id = `p${partIdx}q${qIdx}o${oIdx}`;
+            return (
+              <div key={id} className="flex items-center mb-2">
+                <input
+                  id={id}
+                  type="radio"
+                  name={`p${partIdx}q${qIdx}`}
+                  value={opt.value}
+                  checked={Number(selected) === Number(opt.value)}
+                  onChange={() => handleSelect(partIdx, qIdx, opt.value)}
+                  aria-checked={Number(selected) === Number(opt.value)}
+                />
+                <label htmlFor={id} className="ml-2">{opt.text}</label>
+              </div>
+            );
+          })}
+        </div>
+      </fieldset>
+    );
+  };
+
+  const scores = calculateScores(parts, answers, diagnosisBonus, age65Bonus);
+
+  return (
+    <div className="p-4 max-w-3xl mx-auto">
+      {!showResult && (
+        <div>
+          <header className="mb-4">
+            <h2 className="text-lg font-bold">{parts[currentPart].title} — {parts[currentPart].subtitle}</h2>
+            <p className="text-sm mb-2">{parts[currentPart].description}</p>
+          </header>
+
+          <main>
+            {renderQuestion(currentPart, currentQuestion)}
+
+            <div className="flex gap-2 mt-4">
+              <button
+                type="button"
+                onClick={prevQuestion}
+                aria-label="Pergunta anterior"
+                className="btn"
+              >
+                <ChevronLeft size={18} /> Anterior
+              </button>
+
+              <button
+                type="button"
+                onClick={nextQuestion}
+                aria-label="Próxima pergunta"
+                className="btn-primary ml-auto"
+              >
+                Próximo <ChevronRight size={18} />
+              </button>
+            </div>
+
+            <div className="mt-4 text-xs text-gray-600">
+              Pergunta {currentQuestion + 1} de {parts[currentPart].questions.length} — Parte {currentPart + 1} de {parts.length}
+            </div>
+
+            <div className="mt-6">
+              <button type="button" onClick={() => { setShowResult(true); }} className="underline text-sm">Ir para resultados</button>
+            </div>
+
+          </main>
+        </div>
+      )}
+
+      {showResult && (
+        <section aria-live="polite">
+          <h3 className="text-xl font-bold mb-2">Resultados</h3>
+
+          {/* Se houver necessidade de indicar origem do diagnóstico, oferecemos controle */}
+          {requiresDiagnosisChoice() && (
+            <div className="mb-4">
+              <label className="block font-medium">Você foi diagnosticado por um profissional de saúde?</label>
+              <div className="flex gap-3 mt-2">
+                <label>
+                  <input type="radio" name="diag" checked={diagnosisBonus === 0} onChange={() => setDiagnosisBonus(0)} /> Nenhum
+                </label>
+                <label>
+                  <input type="radio" name="diag" checked={diagnosisBonus === 2} onChange={() => setDiagnosisBonus(2)} /> Outro médico (+2)
+                </label>
+                <label>
+                  <input type="radio" name="diag" checked={diagnosisBonus === 5} onChange={() => setDiagnosisBonus(5)} /> Dermatologista (+5)
+                </label>
+              </div>
+            </div>
+          )}
+
+          <div className="mb-4">
+            <label className="inline-flex items-center">
+              <input type="checkbox" checked={age65Bonus} onChange={e => setAge65Bonus(e.target.checked)} />
+              <span className="ml-2">Tenho 65 anos ou mais (+5 na parte ENRUGADA)</span>
+            </label>
+          </div>
+
+          <div className="grid gap-3">
+            {Object.entries(scores).map(([k, v]) => (
+              <div key={k} className="p-3 border rounded">
+                <div className="flex items-center gap-2">
+                  <CheckCircle size={18} /> <strong>{k.replace('_', ' / ')}</strong>
+                </div>
+                <div className="text-sm mt-2">Pontuação: {Number(v.score).toFixed(2)} (intervalo teórico {Number(v.min).toFixed(2)}–{Number(v.max).toFixed(2)})</div>
+              </div>
+            ))}
+          </div>
+
+          <div className="flex gap-2 mt-6">
+            <button type="button" onClick={() => { setShowResult(false); }} className="btn">Voltar</button>
+            <button type="button" onClick={clearResponses} className="btn-outline ml-auto">Reiniciar</button>
+          </div>
+        </section>
+      )}
+    </div>
+  );
+}
