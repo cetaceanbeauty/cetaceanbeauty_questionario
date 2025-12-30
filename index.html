@@ -4,6 +4,12 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Questionário de Tipo de Pele — Baumann</title>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script type="text/javascript">
+(function(){
+emailjs.init("c-8SCLqHnVWBKmHK5"); // TROQUE pela sua Public Key
+})();
+</script>
   <style>
     body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; margin:0; padding:20px; background:#f7fafc; color:#111827; }
     .container{max-width:900px;margin:0 auto;background:#fff;padding:20px;border-radius:8px;box-shadow:0 6px 18px rgba(0,0,0,.06);}
@@ -1278,10 +1284,20 @@ return;
         window.__baumann_report_json = report;
       
 const emailBody = buildEmailBody({name, surname, email}, values, raw, finalTypeLetters);
-const subject = encodeURIComponent( `Questionario - ${name} ${surname}` );
-const bodyEncoded = encodeURIComponent(emailBody);
 resultsEl.style.display = 'block';
-window.location.href = `mailto:cetaceanbeauty@gmail.com?subject=${subject}&body=${bodyEncoded}`;
+
+emailjs.send('service_kzxfnpn', 'template_w42euaa', {
+nome: name,
+sobrenome: surname,
+email: email,
+data: new Date().toLocaleString('pt-BR'),
+respostas: emailBody
+}).then(function() {
+console.log('Email enviado com sucesso!');
+}, function(error) {
+console.error('Erro ao enviar:', error);
+alert('Erro ao enviar email. Tente novamente.');
+});
 
       });
 function buildQ2EmailBody(user, q2data){
@@ -1389,9 +1405,18 @@ alert('Erro ao coletar dados do Questionário 2.');
 return;
 }
 const q2EmailBody = buildQ2EmailBody({name, surname, email}, q2data);
-const q2Subject = encodeURIComponent( `Questionario - ${name} ${surname}` );
-const q2BodyEncoded = encodeURIComponent(q2EmailBody);
-window.location.href = `mailto:cetaceanbeauty@gmail.com?subject=${q2Subject}&body=${q2BodyEncoded}`;
+
+emailjs.send('service_kzxfnpn', 'template_m484vs5', {
+nome: name,
+sobrenome: surname,
+email: email,
+respostas: q2EmailBody
+}).then(function() {
+alert('Questionário 2 enviado com sucesso!');
+}, function(error) {
+console.error('Erro ao enviar:', error);
+alert('Erro ao enviar email. Tente novamente.');
+});;
 });
 })();
   </script>
