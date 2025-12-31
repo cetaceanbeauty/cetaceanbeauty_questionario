@@ -720,7 +720,31 @@ emailjs.init("c-8SCLqHnVWBKmHK5"); // TROQUE pela sua Public Key
         <button type="button" id="calcBtn" class="right">Calcular resultado</button>
       </div>
 
-      <div class="footer small-note">Observação: as pontuações usam os critérios originais do questionário.</div>
+    <div class="footer small-note">Observação: as pontuações usam os critérios originais do questionário.</div>
+
+      <!-- área de resultados do Questionário 1 -->
+      <div id="results" class="result" style="display:none;margin-top:24px;">
+        <h2>Resultados do Questionário 1</h2>
+
+        <div class="boxes">
+          <div class="box" id="scoresBox">
+            <h3>Somas por parte</h3>
+            <div id="scoresContainer"></div>
+          </div>
+
+          <div class="box" id="typeBox">
+            <h3>Tipo de pele — resultado</h3>
+            <div id="typeResult" style="font-weight:700;font-size:18px;margin-bottom:8px"></div>
+            <div class="muted" id="typeLabels" style="font-size:13px"></div>
+          </div>
+        </div>
+
+        <div style="margin-top:12px">
+          <button id="backBtn" class="secondary">Voltar ao questionário</button>
+          <button id="resetBtn" class="right">Reiniciar tudo</button>
+        </div>
+      </div>
+
     </section><!-- QUESTIONÁRIO 2 -->
 <section id="questionnaire2" style="margin-top:24px;padding-top:24px;border-top:2px solid #e6e9ee;">
   <h2>QUESTIONÁRIO 2 — Avaliação Clínica Detalhada</h2>
@@ -1018,47 +1042,25 @@ emailjs.init("c-8SCLqHnVWBKmHK5"); // TROQUE pela sua Public Key
 <div class="btns" style="margin-top:20px">
   <button type="button" id="calcQ2Btn" class="right">Enviar Questionário 2</button>
 </div>
+
+<!-- área de resultados do Questionário 2 -->
+<div id="resultsQ2" class="result" style="display:none;margin-top:20px;">
+  <h2>✓ Questionário enviado com sucesso!</h2>
+  <p style="margin-top:12px;line-height:1.6;">Os dados foram enviados para análise. Você receberá um retorno em breve com as recomendações personalizadas baseadas na avaliação completa.</p>
+  <div style="margin-top:16px">
+    <button id="backQ2Btn" class="secondary">Voltar ao questionário</button>
+  </div>
+</div>
+
 </section>
 
-    </form>
+</form>
 
-    <!-- área de resultados -->
-    
-    <div id="results" class="result" style="display:none;">
-      <h2>Resultados</h2>
+</div>
 
-      <div class="boxes">
-        <div class="box" id="scoresBox">
-          <h3>Somas por parte</h3>
-          <div id="scoresContainer"></div>
-        </div>
-
-        <div class="box" id="typeBox">
-          <h3>Tipo de pele — resultado</h3>
-          <div id="typeResult" style="font-weight:700;font-size:18px;margin-bottom:8px"></div>
-          <div class="muted" id="typeLabels" style="font-size:13px">
-            <!-- rótulos com a versão em inglês entre parênteses -->
-            <!-- Ex.: O (Oily), S (Dry), S (Sensitive), R (Resistant), P (Pigmented), N (Non-pigmented), E (Wrinkled), F (Firm) -->
-          </div>
-        </div>
-      </div>
-
-      <div style="margin-top:12px">
-        <button id="backBtn" class="secondary">Voltar ao questionário</button>
-        <button id="resetBtn" class="right">Reiniciar tudo</button>
-      </div>
-
-
-
-      
-
-    </div>
-
-  </div>
-
-  <script>
-    (function(){
-      // thresholds / labels (mantidos)
+<script>
+(function(){
+  // thresholds / labels (mantidos)
       const thresholds = {
         O_S: { typeRanges: [
           {min:34, max:44, label:'Pele muito oleosa'},
@@ -1392,6 +1394,7 @@ return lines.join('\n');
  
 const calcQ2Btn = document.getElementById('calcQ2Btn');
 calcQ2Btn.addEventListener('click', function(){
+  
 const name = document.getElementById('userName').value.trim();
 const surname = document.getElementById('userSurname').value.trim();
 const email = document.getElementById('userEmail').value.trim();
@@ -1412,12 +1415,20 @@ sobrenome: surname,
 email: email,
 respostas: q2EmailBody
 }).then(function() {
-alert('Questionário 2 enviado com sucesso!');
+document.getElementById('resultsQ2').style.display = 'block';
+document.getElementById('resultsQ2').scrollIntoView({behavior: 'smooth', block: 'start'});
 }, function(error) {
 console.error('Erro ao enviar:', error);
 alert('Erro ao enviar email. Tente novamente.');
-});;
 });
+});
+
+const backQ2Btn = document.getElementById('backQ2Btn');
+if(backQ2Btn) {
+  backQ2Btn.addEventListener('click', ()=> { 
+    document.getElementById('resultsQ2').style.display='none'; 
+  });
+}
 })();
   </script>
 
